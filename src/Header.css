@@ -1,0 +1,21 @@
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    height: 60px;
+    line-height: 60px;
+    top: 0;
+    background-color: white;
+    text-align: center;
+    border-bottom: 1px solid #333333;
+  }
+  
+  .header a {
+    margin: 25px;
+    font-weight: 700;
+  }
+
+  .header span {
+    margin: 25px;
+    font-weight: 700;
+  }

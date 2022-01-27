@@ -1,0 +1,9 @@
+#banner table {
+    margin-left: 20px;
+}
+
+#banner th, #banner td {
+    padding: 10px;
+    min-width: 50px;
+    text-align: center;
+}

@@ -1,0 +1,10 @@
+#goods {
+    margin-left: 20px;
+}
+
+
+#goods th, #goods td {
+    padding: 10px;
+    min-width: 100px;
+    text-align: center;
+}

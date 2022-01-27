@@ -1,0 +1,21 @@
+footer {
+    position: fixed;
+    width: 100%;
+    max-width: 375px;
+    z-index: 10;
+    height: 52px;
+    bottom: 0;
+    height: 80px;
+    background-color: #333333;
+    text-align: center;
+    line-height: 80px;
+  }
+
+
+
+footer div {
+    color: #ffffff;
+    line-height: 80px;
+    font-size: 20px;
+    font-weight: 700;
+}

@@ -1,0 +1,15 @@
+#user ,#coupon{
+    margin-left: 20px;
+}
+
+#coupon th, #coupon td {
+    padding: 10px;
+    min-width: 100px;
+    text-align: center;
+}
+
+#user th, #user td {
+    padding: 10px;
+    min-width: 100px;
+    text-align: center;
+}

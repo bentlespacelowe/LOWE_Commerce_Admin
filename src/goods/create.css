@@ -1,0 +1,70 @@
+.goods {
+    width: 375px;
+    padding-top: 100px;
+    margin: auto;
+
+}
+
+.goods > div {
+    font-weight: 700;
+    font-size: 17px;
+}
+
+
+.goods select {
+    margin-right: 10px;
+}
+.goods span {
+    margin-right: 20px;
+    font-weight: 700;
+    height: 60px;
+    line-height: 60px;
+}
+.goods .off {
+    display: none;
+}
+
+
+.goods .on {
+    display: inline-block;
+}
+
+.goods label { 
+    display: inline-block; 
+    height: 20px;
+    width: 90px;
+    text-align: center;
+    color: #999; 
+    background-color: #fdfdfd; 
+    cursor: pointer; 
+    border: 1px solid #ebebeb; 
+    border-bottom-color: #e2e2e2; 
+    border-radius: .25em;
+ } 
+ .goods input[type="text"] {
+     height: 30px;
+     border: none;
+     border-bottom: 1px solid #333333;
+     width: 45%;
+ }
+
+ .goods input[type="number"] {
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #333333;
+    width: 45%;
+}
+.goods input[type="file"] {
+      position: absolute; 
+      width: 1px; 
+      height: 1px; 
+      padding: 0; 
+      margin: -1px; 
+      overflow: hidden; 
+      clip:rect(0,0,0,0); 
+      border: 0; 
+    }
+
+    .push_button {
+        border: 3px solid black;
+    }

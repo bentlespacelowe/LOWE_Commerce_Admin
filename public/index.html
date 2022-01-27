@@ -25,6 +25,17 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+    <script language="JavaScript">
+      Number.prototype.comma = function() {
+          return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      };
+  
+  
+      String.prototype.comma = function() {
+          return this.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      };
+  </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

@@ -1,0 +1,10 @@
+#designer {
+    margin-left: 20px;
+}
+
+
+#designer th, #designer td {
+    padding: 10px;
+    min-width: 100px;
+    text-align: center;
+}

@@ -1,0 +1,20 @@
+
+.goods_detail a{
+    text-decoration: none;
+    color: #333333;
+  }
+  
+  .goods_detail img {
+    margin: 0;
+    padding: 0;
+  }
+  
+ .goods_detail {
+    width: 100%;
+    max-width: 375px;
+    margin: 0 auto;
+  }
+  
+  .slick-slider{
+    overflow: hidden;
+  }
