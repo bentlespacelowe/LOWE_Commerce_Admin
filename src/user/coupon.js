@@ -15,7 +15,7 @@ class coupon extends Component {
 
     }
     onClickUse = (e) => () => {
-        axios.post("http://localhost:5000/updateCoupon", {
+        axios.post("http://3.36.218.192:5000/updateCoupon", {
             id: e.id,
             text: this.state.text
         }).then((res) => {
@@ -25,7 +25,7 @@ class coupon extends Component {
 
     onClickDelete = (e) => () => {
         console.log(e.id)
-        axios.post("http://localhost:5000/removeCoupon", {
+        axios.post("http://3.36.218.192:5000/removeCoupon", {
             id: e.id
         }).then((res) => {
             window.history.go(-1)

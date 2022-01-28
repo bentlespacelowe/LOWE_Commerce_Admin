@@ -18,7 +18,7 @@ class Secondsec extends Component {
         let user = Number(window.localStorage.getItem("id"));
         console.log(id, user)
         if (id && user) {
-            axios.post("http://localhost:5000/boardLikeChk", {
+            axios.post("http://3.36.218.192:5000/boardLikeChk", {
                 user: user,
                 id: id,
             })
@@ -32,7 +32,7 @@ class Secondsec extends Component {
         }
 
 
-        axios.post("http://localhost:5000/getAllBanner", {})
+        axios.post("http://3.36.218.192:5000/getAllBanner", {})
         .then((res)=>{
             if(res.data.length){
                 for(let i =0; i < res.data.length; i++){
@@ -61,7 +61,7 @@ class Secondsec extends Component {
          like = 0;
        }
        if (id && user) {
-         await axios.post("http://localhost:5000/boardLikeUpdate", {
+         await axios.post("http://3.36.218.192:5000/boardLikeUpdate", {
            id: id,
            user: user,
            heart: like

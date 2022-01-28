@@ -35,7 +35,7 @@ class create extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://localhost:5000/getDesignerList", {})
+        axios.post("http://3.36.218.192:5000/getDesignerList", {})
             .then((res) => {
                 this.setState({ data: res.data })
                 console.log(res.data)
@@ -82,7 +82,7 @@ class create extends Component {
                         main: img[i].main,
                         img: subimgurl
                     })
-                    subimgurl= [];
+                    subimgurl = [];
                 }
             }
 
@@ -142,7 +142,7 @@ class create extends Component {
             const formData = new FormData();
             formData.append("file", img);
             await axios
-                .post("http://localhost:5000/addImg", formData, {
+                .post("http://3.36.218.192:5000/addImg", formData, {
                     headers: {
                         "content-type": "multipart/form-data",
                     },
@@ -169,7 +169,7 @@ class create extends Component {
                 content: "로위",
             },
         ];
-        axios.post("http://localhost:5000/createBoard", {
+        axios.post("http://3.36.218.192:5000/createBoard", {
             ManagerId: 1,
             phone: "0",
             designer_name: this.state.designer_name,
@@ -211,7 +211,7 @@ class create extends Component {
                 content: "로위",
             },
         ];
-        await axios.post("http://localhost:5000/updateBoard", {
+        await axios.post("http://3.36.218.192:5000/updateBoard", {
             id: Number(window.location.pathname.split("/")[3]),
             ManagerId: 1,
             phone: "0",
@@ -458,69 +458,31 @@ class create extends Component {
                         <option value={3}>롱</option>
                     </select>
                 </div>
-                <div style={{ marginTop: "40px" }}>before & after</div>
-                {
-                    this.state.beforeAfterImg.length ?
-                        this.state.beforeAfterImg.map((e, i) => (
-                            <div key={i} >
-                                <div style={{ justifyContent: "space-around", display: "flex", height: "170px" }}>
-                                    <span><img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.beforeimg)} className={(this.state.thumbnail === e.beforeimg ? "push_button" : '')} src={e.beforeimg} alt={e.beforeimg}></img></span>
-                                    <span><img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.afterimg)} className={(this.state.thumbnail === e.afterimg ? "push_button" : '')} id={e.afterimg} src={e.afterimg} alt={e.afterimg}></img></span>
-                                </div>
-                                <div>{e.main}</div>
-                                <div style={{ width: "60px", border: "1px solid #333333", textAlign: "center" }} onClick={this.onClickDelBaA(i)}>삭제</div>
-                            </div>
-                        )) : null
-                }
-                <div>
-                    <label htmlFor="board_beforeimg">before</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        size="40"
-                        id="board_beforeimg"
-                        onChange={this.handleInputValue("beforeimg")}
-                    />
-                    <label htmlFor="board_afterimg">after</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        size="40"
-                        id="board_afterimg"
-                        onChange={this.handleInputValue("afterimg")}
-                    />
-                    <input
-                        style={{ marginLeft: "10px", width: "200px" }}
-                        type="text"
-                        onChange={this.handleInputValue("beforeAfter")}
-                        placeholder="비포앤에프터 설명"
-                        id="gbeforeAfter"
-                    />
-                    <span style={{ marginLeft: "10px" }} onClick={this.onClickBaA}>추가</span>
-                </div>
-
                 <div style={{ marginBottom: "30px", height: "fit-content" }}>
-                    <div style={{ width: "50%", float: "left", display: "inline-block" }}>
+                    <div style={{ display: "inline-block" }}>
                         <div style={{ marginTop: "40px" }}>Main img</div>
-                        <input
-                            type="text"
-                            onChange={this.handleInputValue("MainimgMain")}
-                            placeholder="메인 설명"
-                            id="gMainimgMain"
-                        />
-                        <input
-                            type="text"
-                            onChange={this.handleInputValue("MainimgSub")}
-                            placeholder="서브 설명"
-                            id="gMainimgSub"
-                        />
-
+                        <div style={{ width: "375px",  marginTop: "40px"  }}>
+                            <input
+                                type="text"
+                                onChange={this.handleInputValue("MainimgMain")}
+                                placeholder="메인 설명"
+                                id="gMainimgMain"
+                            />
+                        </div>
+                        <div style={{ width: "375px", marginTop: "20px", marginBottom: "30px" }}>
+                            <input
+                                type="text"
+                                onChange={this.handleInputValue("MainimgSub")}
+                                placeholder="서브 설명"
+                                id="gMainimgSub"
+                            />
+                        </div>
                         {
                             this.state.Mainimgs.length ?
                                 this.state.Mainimgs.map((e, i) => (
-                                    <div key={i}>
+                                    <div key={i} style={{marginTop: "10px"}}>
+                                    <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center",cursor: "pointer" }} onClick={this.onClickDelMain(i)}>x</div>
                                         <img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.url)} className={(this.state.thumbnail === e.url ? "push_button" : '')} src={e.url} alt={e.url}></img>
-                                        <div style={{ width: "60px", border: "1px solid #333333", textAlign: "center" }} onClick={this.onClickDelMain(i)}>삭제</div>
                                     </div>
                                 )) : null
                         }
@@ -533,8 +495,8 @@ class create extends Component {
                                 id="board_Mainimg"
                                 onChange={this.handleInputValue("Mainimg")}
                             />
+                            <span style={{ marginLeft: "20px" }} onClick={this.onClickMain}>이미지 추가</span>
                         </div>
-                        <span onClick={this.onClickMain}>추가</span>
                     </div>
                 </div>
                 <div style={{ display: "inline-block", width: "100%" }}>
@@ -543,15 +505,15 @@ class create extends Component {
                     {
                         this.state.SubimgTotal.length ?
                             this.state.SubimgTotal.map((e, i) => (
-                                <div key={i}>
+                                <div key={i} style={{border: "1px solid #F5F5F5", marginBottom: "15px", textAlign: "center"}}>
+                                <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center",cursor: "pointer"  }} onClick={this.onClickDelSubtotal(i)}>x</div>
                                     <div>{e.main}</div>
                                     {e.img.map((e, j) => (
                                         <div key={j}>
-                                        <img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.url)} className={(this.state.thumbnail === e.url ? "push_button" : '')} src={e.url} alt={e.url}></img>
+                                            <img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.url)} className={(this.state.thumbnail === e.url ? "push_button" : '')} src={e.url} alt={e.url}></img>
                                         </div>
                                     ))
                                     }
-                                    <div style={{ width: "60px", border: "1px solid #333333", textAlign: "center" }} onClick={this.onClickDelSubtotal(i)}>삭제</div>
                                 </div>
                             )) : null
                     }
@@ -562,8 +524,8 @@ class create extends Component {
                                 this.state.Subimgs.length ?
                                     this.state.Subimgs.map((e, n) => (
                                         <div key={n}>
+                                        <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center",cursor: "pointer" }} onClick={this.onClickDelSub(n)}>x</div>
                                             <img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.url)} className={(this.state.thumbnail === e.url ? "push_button" : '')} src={e.url} alt={e.url}></img>
-                                            <div style={{ width: "60px", border: "1px solid #333333", textAlign: "center" }} onClick={this.onClickDelSub(n)}>삭제</div>
                                         </div>
                                     )) : null
                             }
@@ -582,17 +544,59 @@ class create extends Component {
                             id="board_Subimg"
                             onChange={this.handleInputValue("Subimg")}
                         />
+                        <span style={{ marginLeft: "20px" }} onClick={this.onClickSub}>이미지 추가</span>
                     </div>
-                    <span onClick={this.onClickSub}>추가</span>
                     <div>
 
                         <span onClick={this.onClickSubtotal}>추가</span>
                     </div>
                 </div>
+                <div style={{ marginTop: "40px"}}>before & after</div>
+                {
+                    this.state.beforeAfterImg.length ?
+                        this.state.beforeAfterImg.map((e, i) => (
+                            <div key={i} style={{border: "1px solid #F5F5F5", marginBottom: "15px", textAlign: "center"}}>
+                            <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center",cursor: "pointer"  }}  onClick={this.onClickDelBaA(i)}>x</div>
+                                <div style={{ justifyContent: "space-around", display: "flex", height: "170px" , marginTop: "30px"}}>
+                                    <span><img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.beforeimg)} className={(this.state.thumbnail === e.beforeimg ? "push_button" : '')} src={e.beforeimg} alt={e.beforeimg}></img></span>
+                                    <span><img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.afterimg)} className={(this.state.thumbnail === e.afterimg ? "push_button" : '')} id={e.afterimg} src={e.afterimg} alt={e.afterimg}></img></span>
+                                </div>
+                                <div>{e.main}</div>
+                            </div>
+                        )) : null
+                }
+                <div style={{marginTop: "40px"}}>
+                    <label style={{width: "40px", fontSize: "13px", marginRight: "10px"}} htmlFor="board_beforeimg">before</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        size="40"
+                        id="board_beforeimg"
+                        onChange={this.handleInputValue("beforeimg")}
+                    />
+                    <label style={{width: "40px", fontSize: "13px"}} htmlFor="board_afterimg">after</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        size="40"
+                        id="board_afterimg"
+                        onChange={this.handleInputValue("afterimg")}
+                    />
+                    <input
+                        style={{ marginLeft: "10px", width: "200px" }}
+                        type="text"
+                        onChange={this.handleInputValue("beforeAfter")}
+                        placeholder="비포앤에프터 설명"
+                        id="gbeforeAfter"
+                    />
+                </div>
+                <div style={{marginBottom: "45px"}}>
+                    <span onClick={this.onClickBaA}>추가</span>
+                </div>
                 {
                     this.props.location.state ?
                         <button onClick={this.handleImgedit}>수정</button> :
-                        <button onClick={this.handleImgValue}>submit</button>
+                        <button onClick={this.handleImgValue}>등록</button>
                 }
             </div>
         );

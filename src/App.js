@@ -30,7 +30,7 @@ class App extends Component {
           {window.localStorage.getItem("login") === "admin" ?
             <>
               <Route path="/banners" component={Banner} />
-              <Route path="/banner/:id" component={BannerCreate} />
+              <Route path="/banner/edit/:id" component={BannerCreate} />
               <Route path="/banner/create/:id" component={BannerCreate} />
               <Route path="/designers" component={Designers} />
               <Route path="/designer/create" component={DesignersCreate} />

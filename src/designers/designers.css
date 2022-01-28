@@ -2,6 +2,10 @@
     margin-left: 20px;
 }
 
+#designer table {
+    width: 100%;
+    padding-top: 40px;
+}
 
 #designer th, #designer td {
     padding: 10px;

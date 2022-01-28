@@ -7,24 +7,56 @@ class designers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: ''
+            data: '',
+            alldata: '',
+            search: '',
         };
     }
 
     componentDidMount = () => {
-        axios.post("http://localhost:5000/getDesignerList", {})
+        axios.post("http://3.36.218.192:5000/getDesignerList", {})
             .then((res) => {
-                this.setState({ data: res.data })
+                this.setState({ data: res.data, alldata: res.data })
                 console.log(res.data)
             }).catch((err) => {
                 console.log(err)
             })
     }
 
+
+    handleInputSearch = () => {
+        let keyword = this.state.search
+        let data = this.state.alldata
+        let arr =[];
+        for(let i =0; i <data.length; i++){
+            if(data[i].name.indexOf(keyword) !== -1){
+                arr.push(data[i]);
+            }
+        }
+
+        this.setState({data: arr});
+
+    }
+
+
+
+    handleInputValue = (key) => (e) => {
+        this.setState({ [key]: e.target.value, });
+    };
+
     render() {
+        console.log(this.state)
         return (
             <section id="designer">
-                <div></div>
+                <div style={{ fontWeight: "700", fontSize: "15px", margin: "20px" }}>
+                    <a href="/designer/create">디자이너 추가</a>
+                </div>
+                <div style={{ float: "right", width: "250px" }}>
+                    <input onChange={this.handleInputValue("search")} className="goods_input" placeholder="이름을 입력해주세요" type="text"></input>
+
+                    <img onClick={this.handleInputSearch} className="goods_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
+
+                </div>
                 {
                     this.state.data.length > 0 ?
                         <table>
@@ -35,7 +67,6 @@ class designers extends Component {
                                     <th>소개</th>
                                     <th>프로필</th>
                                     <th>예약</th>
-                                    <th>이미지</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,7 +77,6 @@ class designers extends Component {
                                         <td>{e.introduction}</td>
                                         <td>{e.home}</td>
                                         <td>{e.reserve_url}</td>
-                                        <td><img src={e.img} alt="이미지" style={{ width: "150px" }} /></td>
                                         <td>
 
                                             <Link to={{
@@ -64,9 +94,6 @@ class designers extends Component {
                             디자이너가 없습니다
                         </div>
                 }
-                <div>
-                    <a href="/designer/create">디자이너 추가</a>
-                </div>
             </section>
         )
     }

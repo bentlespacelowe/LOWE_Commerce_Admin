@@ -1,6 +1,8 @@
 #banner table {
     margin-left: 20px;
+    width: 100%;
 }
+
 
 #banner th, #banner td {
     padding: 10px;

@@ -12,7 +12,7 @@ class banner extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://localhost:5000/getAllBanner", {})
+        axios.post("http://3.36.218.192:5000/getAllBanner", {})
             .then((res) => {
                 this.setState({ data: res.data })
                 console.log(res.data)
@@ -22,7 +22,7 @@ class banner extends Component {
     }
 
     removeBanner = (e) => () => {
-        axios.post("http://localhost:5000/removeBanner", {
+        axios.post("http://3.36.218.192:5000/removeBanner", {
             id: e
         })
             .then((res) => {
@@ -60,7 +60,7 @@ class banner extends Component {
                                             <td><img src={e.img} alt="이미지" style={{ width: "200px" }} /></td>
                                             <td>
                                                 <Link to={{
-                                                    pathname: "/banner/" + e.id,
+                                                    pathname: "/banner/edit/" + e.id,
                                                     state: {
                                                         e
                                                     }
@@ -103,7 +103,7 @@ class banner extends Component {
                                                 <td><img src={e.img} alt="이미지" style={{ width: "150px" }} /></td>
                                                 <td>
                                                     <Link to={{
-                                                        pathname: "/banner/" + e.id,
+                                                        pathname: "/banner/edit/" + e.id,
                                                         state: {
                                                             e
                                                         }
@@ -146,7 +146,7 @@ class banner extends Component {
                                                 <td><img src={e.img} alt="이미지" style={{ width: "150px" }} /></td>
                                                 <td>
                                                     <Link to={{
-                                                        pathname: "/banner/" + e.id,
+                                                        pathname: "/banner/edit/" + e.id,
                                                         state: {
                                                             e
                                                         }

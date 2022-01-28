@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Component } from "react";
+import "./create.css"
 
 class create extends Component {
     constructor(props) {
@@ -54,7 +55,7 @@ class create extends Component {
             const formData = new FormData();
             formData.append("file", img);
             await axios
-                .post("http://localhost:5000/addImg", formData, {
+                .post("http://3.36.218.192:5000/addImg", formData, {
                     headers: {
                         "content-type": "multipart/form-data",
                     },
@@ -68,7 +69,7 @@ class create extends Component {
 
     handleEditDesigner = async () => {
         await axios
-            .post("http://localhost:5000/updateDesigner", {
+            .post("http://3.36.218.192:5000/updateDesigner", {
                 id: this.props.location.state.e.id,
                 normal_id: this.state.name,
                 password: "1234",
@@ -90,7 +91,7 @@ class create extends Component {
 
     handleImgValue = async () => {
         await axios
-            .post("http://localhost:5000/joinManager", {
+            .post("http://3.36.218.192:5000/joinManager", {
                 normal_id: this.state.name,
                 password: "1234",
                 name: this.state.name,
@@ -113,7 +114,8 @@ class create extends Component {
         console.log(this.props.location.state)
         console.log(this.state)
         return (
-            <section>
+            <section className="designer">
+                <div>이름</div>
                 <div>
                     <input
                         type="text"
@@ -122,6 +124,7 @@ class create extends Component {
                         id="dname"
                     />
                 </div>
+                <div>전화번호</div>
                 <div>
                     <input
                         type="text"
@@ -130,14 +133,16 @@ class create extends Component {
                         id="dphone"
                     />
                 </div>
+                <div>지점</div>
                 <div>
                     <input
                         type="text"
                         onChange={this.handleInputValue("store")}
-                        placeholder="위치"
+                        placeholder="지점"
                         id="dstore"
                     />
                 </div>
+                <div>소개</div>
                 <div>
                     <input
                         type="text"
@@ -146,6 +151,7 @@ class create extends Component {
                         id="dintroduction"
                     />
                 </div>
+                <div>프로필 페이지</div>
                 <div>
                     <input
                         type="text"
@@ -154,6 +160,7 @@ class create extends Component {
                         id="dhome"
                     />
                 </div>
+                <div>예약 페이지</div>
                 <div>
                     <input
                         type="text"
@@ -162,20 +169,24 @@ class create extends Component {
                         id="dreserve"
                     />
                 </div>
-                <div>
-                    <span>이미지</span>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        size="40"
-                        onChange={this.handleInputValue("img")}
-                    />
-                </div>
+                <div>사진</div>
                 <div>
                     {
                         this.state.img ? <img style={{ width: "200px" }} src={this.state.img} alt="test"></img>
                             : null
                     }
+                </div>
+                <div>
+                    <div style={{marginBottom: "40px"}}>
+                    <label htmlFor="designer_img" >이미지</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        size="40"
+                        id="designer_img"
+                        onChange={this.handleInputValue("img")}
+                    />
+                    </div>
                 </div>
                 {this.props.location.state ?
                     <button onClick={this.handleEditDesigner}>수정</button> :

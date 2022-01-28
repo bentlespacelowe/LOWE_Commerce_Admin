@@ -1,4 +1,4 @@
-.goods {
+.banner {
     width: 375px;
     padding-top: 100px;
     margin: auto;
@@ -6,31 +6,32 @@
 
 }
 
-.goods > div {
+.banner > div {
     font-weight: 700;
     font-size: 17px;
+    margin-bottom: 30px;
 }
 
 
-.goods select {
+.banner select {
     margin-right: 10px;
 }
-.goods span {
+.banner span {
     margin-right: 20px;
     font-weight: 700;
     height: 60px;
     line-height: 60px;
 }
-.goods .off {
+.banner .off {
     display: none;
 }
 
 
-.goods .on {
+.banner .on {
     display: inline-block;
 }
 
-.goods label { 
+.banner label { 
     display: inline-block; 
     height: 20px;
     width: 90px;
@@ -42,20 +43,20 @@
     border-bottom-color: #e2e2e2; 
     border-radius: .25em;
  } 
- .goods input[type="text"] {
+ .banner input[type="text"] {
      height: 30px;
      border: none;
      border-bottom: 1px solid #333333;
      width: 45%;
  }
 
- .goods input[type="number"] {
+ .banner input[type="number"] {
     height: 30px;
     border: none;
     border-bottom: 1px solid #333333;
     width: 45%;
 }
-.goods input[type="file"] {
+.banner input[type="file"] {
       position: absolute; 
       width: 1px; 
       height: 1px; 
@@ -72,7 +73,7 @@
         z-index: 5;
     }
 
-.goods button {
+.banner button {
     width: 100px;
     height: 50px;
     font: 700 17px "Noto Sans";

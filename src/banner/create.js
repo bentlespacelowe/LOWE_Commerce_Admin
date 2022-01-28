@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Component } from "react";
+import "./create.css"
 
 class create extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ class create extends Component {
             const formData = new FormData();
             formData.append("file", img);
             await axios
-                .post("http://localhost:5000/addImg", formData, {
+                .post("http://3.36.218.192:5000/addImg", formData, {
                     headers: {
                         "content-type": "multipart/form-data",
                     },
@@ -65,7 +66,7 @@ class create extends Component {
     };
 
     handleEditbanner = async () => {
-        await axios.post("http://localhost:5000/updateBanner", {
+        await axios.post("http://3.36.218.192:5000/updateBanner", {
             id: this.props.location.state.e.id,
             title: this.state.title,
             content: this.state.content,
@@ -81,7 +82,7 @@ class create extends Component {
     }
 
     handleImgValue = async () => {
-        await axios.post("http://localhost:5000/createBanner", {
+        await axios.post("http://3.36.218.192:5000/createBanner", {
             title: this.state.title,
             content: this.state.content,
             type: this.state.type,
@@ -99,28 +100,31 @@ class create extends Component {
         console.log(this.state)
         console.log(this.props.location.state)
         return (
-            <section>
+            <section className="banner">
+                <div>타이틀</div>
                 <div>
-                    <div>타이틀</div>
                     <input type="text" onChange={this.handleInputValue("title")} id="btitle" placeholder="제목" />
                 </div>
+                <div>내용</div>
                 <div>
-                    <div>내용</div>
                     <input type="text" onChange={this.handleInputValue("content")} id="bcontent" placeholder="내용" />
                 </div>
+                <div>링크</div>
                 <div>
-                    <div>링크</div>
                     <input type="text" onChange={this.handleInputValue("url")} id="burl" placeholder="이동url" />
                 </div>
-                <div>
-                    <div>이미지</div>
-                    <input type="file" accept="image/*" size="40" onChange={this.handleInputValue("img")} />
-                </div>
+                <div>이미지</div>
                 <div>
                     {
                         this.state.img ? <img style={{ width: "200px" }} src={this.state.img} alt="test"></img>
                             : null
                     }
+                </div>
+                <div>
+                    <div style={{marginBottom: "40px"}}>
+                        <label htmlFor="banner_img" >이미지</label>
+                        <input id="banner_img" type="file" accept="image/*" size="40" onChange={this.handleInputValue("img")} />
+                    </div>
                 </div>
                 {this.props.location.state ?
                     <button onClick={this.handleEditbanner}>수정</button> :

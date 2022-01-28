@@ -2,9 +2,31 @@
     margin-left: 20px;
 }
 
+#goods table {
+    width: 100%;
+    padding-top: 40px;
+}
 
 #goods th, #goods td {
     padding: 10px;
     min-width: 100px;
     text-align: center;
+}
+
+.goods_input {
+    max-width: 255px;
+    height: 60px;
+    line-height: 60px;
+    border: none;
+    outline: none;
+    font: 500 16px "Noto Sans";
+    right: 0;
+    
+
+}
+.goods_search {
+    width: 60px;
+    right: 0;
+    height: 60px;
+    position: absolute;
 }
