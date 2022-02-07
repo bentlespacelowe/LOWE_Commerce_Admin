@@ -84,7 +84,6 @@ class create extends Component {
                 store: this.state.store
             })
             .then((res) => {
-                console.log(res.data);
                 window.location.replace("/designers")
             });
     };
@@ -105,14 +104,11 @@ class create extends Component {
                 store: this.state.store
             })
             .then((res) => {
-                console.log(res.data);
                 window.location.replace("/designers")
             });
     };
 
     render() {
-        console.log(this.props.location.state)
-        console.log(this.state)
         return (
             <section className="designer">
                 <div>이름</div>

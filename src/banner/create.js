@@ -19,7 +19,6 @@ class create extends Component {
     componentDidMount = () => {
         let id = window.location.pathname.split("/")[3];
         this.setState({ type: Number(id) })
-        console.log("gi")
         if (this.props.location.state) {
             document.getElementById("bcontent").value = this.props.location.state.e.content
             document.getElementById("btitle").value = this.props.location.state.e.title
@@ -77,7 +76,6 @@ class create extends Component {
         })
             .then((res) => {
                 window.location.replace("/banners")
-                console.log(res.data);
             });
     }
 
@@ -92,13 +90,10 @@ class create extends Component {
         })
             .then((res) => {
                 window.location.replace("/banners")
-                console.log(res.data);
             });
     };
 
     render() {
-        console.log(this.state)
-        console.log(this.props.location.state)
         return (
             <section className="banner">
                 <div>타이틀</div>

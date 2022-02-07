@@ -45,7 +45,6 @@ class designers extends Component {
     };
 
     render() {
-        console.log(this.state)
         return (
             <section id="designer">
                 <div style={{ fontWeight: "700", fontSize: "15px", margin: "20px" }}>

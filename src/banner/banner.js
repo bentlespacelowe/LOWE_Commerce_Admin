@@ -15,7 +15,6 @@ class banner extends Component {
         axios.post("http://3.36.218.192:5000/getAllBanner", {})
             .then((res) => {
                 this.setState({ data: res.data })
-                console.log(res.data)
             }).catch((err) => {
                 console.log(err)
             })
@@ -163,6 +162,50 @@ class banner extends Component {
                 }
                 <div  style={{fontWeight: "700", fontSize: "15px", margin: "20px"}}>
                     <a href="/banner/create/3">배너 생성</a>
+                </div>
+
+                <div style={{fontWeight: "700", fontSize: "20px", margin: "20px", marginBottom: "40px"}}>홈 띠배너</div>
+                {
+                    this.state.data.length > 0 ?
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>내용</th>
+                                                           
+                                    <th>링크</th>
+                                    <th>사진</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.data.map((e) => (
+                                    <tr key={e.id}>
+                                        {e.type === 4 ?
+                                            <>
+                                                <td>{e.title}</td>
+                                                <td>{e.content}</td>
+                                                                                                
+                                                <td>{e.url}</td>
+                                                <td><img src={e.img} alt="이미지" style={{ width: "150px" }} /></td>
+                                                <td>
+                                                    <Link to={{
+                                                        pathname: "/banner/edit/" + e.id,
+                                                        state: {
+                                                            e
+                                                        }
+                                                    }}>수정</Link>
+                                                </td>
+                                                <td onClick={this.removeBanner(e.id)}>삭제</td>
+                                            </>
+                                            : 
+                                            null}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table> : null
+                }
+                <div  style={{fontWeight: "700", fontSize: "15px", margin: "20px"}}>
+                    <a href="/banner/create/4">배너 생성</a>
                 </div>
             </section>
         )
