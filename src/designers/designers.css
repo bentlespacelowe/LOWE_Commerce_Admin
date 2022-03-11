@@ -1,14 +1,35 @@
 #designer {
-    margin-left: 20px;
+    padding-left: 240px;
+    background-color: #F5F5F5;
+    margin-top: 80px;
+    min-height: 100vh;
+}
+
+.table_title {
+    font: 700 30px "Noto Sans";
+    line-height:  60px;
 }
 
 #designer table {
-    width: 100%;
-    padding-top: 40px;
+    margin-top: 25px;
 }
 
 #designer th, #designer td {
-    padding: 10px;
-    min-width: 100px;
-    text-align: center;
+    padding: 12px;
+    text-align: left;
+}
+
+.goods_input {
+    width: 460px;
+    right: 0;
+    height: 60px;
+    position: absolute;
+    margin-right: 120px;
+    border: none;
+    outline: none;
+
+}
+.goods_search {
+    margin-right: 60px;
+    float: right;
 }

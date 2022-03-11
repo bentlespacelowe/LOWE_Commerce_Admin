@@ -2,6 +2,7 @@ import { Component } from "react";
 import axios from "axios";
 import "./goods.css"
 import { Link } from 'react-router-dom';
+import Header from '../Header'
 
 class goods extends Component {
     constructor(props) {
@@ -67,13 +68,16 @@ class goods extends Component {
     render() {
         return (
             <section id="goods">
-                <div style={{ fontWeight: "700", fontSize: "15px", margin: "20px" }}>
+                <Header list={2} />
+                <div style={{ fontWeight: "700", fontSize: "15px", margin: "10px" }}>
                     <a href="/board/create">상품 추가</a>
                 </div>
-                <div style={{float: "right", width: "250px"}}>
-                        <input onChange={this.handleInputValue("search")} className="goods_input" placeholder="제목을 입력해주세요" type="text"></input>
-                        <img onClick={this.handleInputSearch} className="goods_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
-                  
+                <div style={{ width: "100%", justifyContent: "space-between", height: "60px", paddingTop: "90px" }}>
+                    <span className="table_title">상품 목록</span>
+                <span >
+                    <input onChange={this.handleInputValue("search")} className="goods_input" placeholder="제목을 입력해주세요" type="text"></input>
+                    <img onClick={this.handleInputSearch} className="goods_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
+                </span>
                 </div>
                 {
                     this.state.data.length > 0 ?
@@ -84,6 +88,7 @@ class goods extends Component {
                                     <th>장소</th>
                                     <th>디자이너</th>
                                     <th>공개여부</th>
+                                    <th>클릭수</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,6 +98,7 @@ class goods extends Component {
                                         <td>{e.store}</td>
                                         <td>{e.designer_name}</td>
                                         <td>{e.open === "1" ? "공개" : "비공개"}</td>
+                                        <td>{e.visit}</td>
                                         <td>
                                             <a href={"good/" + e.id}>상품 확인</a>
                                         </td>

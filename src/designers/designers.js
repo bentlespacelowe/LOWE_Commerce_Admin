@@ -2,6 +2,7 @@ import { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import "./designers.css"
+import Header from '../Header'
 
 class designers extends Component {
     constructor(props) {
@@ -27,14 +28,14 @@ class designers extends Component {
     handleInputSearch = () => {
         let keyword = this.state.search
         let data = this.state.alldata
-        let arr =[];
-        for(let i =0; i <data.length; i++){
-            if(data[i].name.indexOf(keyword) !== -1){
+        let arr = [];
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].name.indexOf(keyword) !== -1) {
                 arr.push(data[i]);
             }
         }
 
-        this.setState({data: arr});
+        this.setState({ data: arr });
 
     }
 
@@ -47,14 +48,18 @@ class designers extends Component {
     render() {
         return (
             <section id="designer">
-                <div style={{ fontWeight: "700", fontSize: "15px", margin: "20px" }}>
+                <Header list={3} />
+                <div style={{ fontWeight: "700", fontSize: "15px", margin: "10px" }}>
                     <a href="/designer/create">디자이너 추가</a>
                 </div>
-                <div style={{ float: "right", width: "250px" }}>
+
+                <div style={{ width: "100%", justifyContent: "space-between", height: "60px", paddingTop: "90px" }}>
+                    <span className="table_title">디자이너 목록</span>
+                <span >
                     <input onChange={this.handleInputValue("search")} className="goods_input" placeholder="이름을 입력해주세요" type="text"></input>
 
                     <img onClick={this.handleInputSearch} className="goods_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
-
+                </span>
                 </div>
                 {
                     this.state.data.length > 0 ?

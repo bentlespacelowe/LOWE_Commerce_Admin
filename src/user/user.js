@@ -2,6 +2,7 @@ import { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import "./user.css"
+import Header from '../Header'
 
 class user extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class user extends Component {
             }).catch((err) => {
                 console.log(err)
             })
+
     }
 
 
@@ -29,7 +31,7 @@ class user extends Component {
         let data = this.state.alldata
         let arr = [];
         for (let i = 0; i < data.length; i++) {
-            if (data[i].login_id.indexOf(keyword) !== -1 || data[i].name.indexOf(keyword) !== -1) {
+            if (data[i].login_id.indexOf(keyword) !== -1 || data[i].name.indexOf(keyword) !== -1 || data[i].phone.indexOf(keyword) !== -1)  {
                 arr.push(data[i]);
             }
         }
@@ -45,19 +47,25 @@ class user extends Component {
     };
 
     render() {
+        console.log(this.state.data)
         return (
             <section id="user">
-                <div style={{ float: "right", width: "250px" }}>
-                    <input onChange={this.handleInputValue("search")} className="goods_input" placeholder="이름을 입력해주세요" type="text"></input>
-
+            <Header list={4} />
+                <div style={{  width: "100%", justifyContent: "space-between" , height: "60px", paddingTop: "90px"}}>
+                <span className="table_title">유저 리스트</span>
+                <span >
                     <img onClick={this.handleInputSearch} className="goods_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
 
+                    <input onChange={this.handleInputValue("search")} placeholder="입력해주세요" type="text"></input>
+
+                </span>
                 </div>
                 {
                     this.state.data ?
                         <table>
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>이름</th>
                                     <th>전화번호</th>
                                     <th>생년월일</th>
@@ -67,9 +75,10 @@ class user extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.data.map((e) => (
+                                {this.state.data.map((e, i) => (
                                     <tr key={e.id}>
-                                        <td>{e.name}</td>
+                                        <td>{i}</td>
+                                        <td style={{width: "116px"}}>{e.name}</td>
                                         <td>{e.phone}</td>
                                         <td>{e.birthday.slice(0, 10)}</td>
                                         <td>{e.login_id}</td>
@@ -79,7 +88,8 @@ class user extends Component {
                                             pathname: `/user/coupon/${e.login_id}`,
                                             state: {
                                                 coupon: e.Coupons,
-                                                id: e.login_id
+                                                id: e.login_id,
+                                                userid: e.id
                                             }
                                         }}>쿠폰확인</Link>
                                         </td>

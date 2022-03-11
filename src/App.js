@@ -10,7 +10,10 @@ import Coupon from "./user/coupon";
 import Goods from "./goods/goods";
 import Goodsdetail from "./goods/Board/Board";
 import GoodsCreate from "./goods/create";
-import Header from "./Header";
+import Header2 from "./header2";
+import Coupons from "./coupon/coupon";
+import Reviews from "./review/review";
+import couponcreate from "./user/couponcreate";
 
 
 class App extends Component {
@@ -24,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Header />
+        <Header2 />
         <Route exact path="/" component={Home} />
         <Switch>
           {window.localStorage.getItem("login") === "admin" ?
@@ -41,10 +44,14 @@ class App extends Component {
               <Route path="/good/:id" component={Goodsdetail} />
               <Route path="/board/create" component={GoodsCreate} />
               <Route path="/board/edit/:id" component={GoodsCreate} />
+              <Route path="/coupons" component={Coupons} />
+              <Route path="/reviews" component={Reviews} />
+              <Route path="/coupon/create/:id" component={couponcreate} />
             </> :
             window.localStorage.getItem("login") === "store" ?
               <>
                 <Route path="/users" component={User} />
+                <Route path="/user/coupon/:id" component={Coupon} />
               </> : null
           }
         </Switch>

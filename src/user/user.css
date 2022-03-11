@@ -1,15 +1,39 @@
 #user ,#coupon{
-    margin-left: 20px;
+    padding-left: 240px;
+    background-color: #F5F5F5;
+    margin-top: 80px;
+    min-height: 100vh;
+}
+.table_title {
+    font: 700 30px "Noto Sans";
+    line-height:  60px;
+}
+
+#user table {
+    margin-top: 25px;
 }
 
 #coupon th, #coupon td {
-    padding: 10px;
-    min-width: 100px;
-    text-align: center;
+    padding: 12px;
+    text-align: left;
 }
 
 #user th, #user td {
-    padding: 10px;
-    min-width: 100px;
-    text-align: center;
+    padding: 12px;
+    text-align: left;
+}
+
+#user input {
+    width: 460px;
+    right: 0;
+    height: 60px;
+    position: absolute;
+    margin-right: 120px;
+    border: none;
+    outline: none;
+}
+
+#user .goods_search {
+    margin-right: 60px;
+    float: right;
 }

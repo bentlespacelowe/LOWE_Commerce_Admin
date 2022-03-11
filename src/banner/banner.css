@@ -1,11 +1,75 @@
 #banner table {
-    margin-left: 20px;
+    border-spacing: 0;
     width: 100%;
+    max-width: 1640px;
 }
 
+#banner {
+    padding-left: 240px;
+    background-color: #F5F5F5;
+    margin-top: 80px;
+    min-height: 100vh;
+
+}
+
+.create_button {
+    width: 280px;
+    height: 54px;
+    background-color: #333333;
+    text-align: center;
+    line-height: 54px;
+    position: absolute;
+    right: 60px;
+}
+
+.create_button > a {
+    width: 280px;
+    color: #ffffff;
+    font: 700 18px "Noto Sans"
+}
+
+.table_title {
+    font: 700 30px "Noto Sans";
+    line-height:  60px;
+}
+
+#banner table {
+    margin-top: 25px;
+}
 
 #banner th, #banner td {
-    padding: 10px;
-    min-width: 50px;
+    padding: 13px 8px 13px 15px;
+    text-align: left;
+}
+
+#banner td {
+    background-color: #ffffff;
+    font: 500 16px "Noto Sans";
+    margin-bottom: 12px;
+    border-bottom: 8px solid #F5F5F5;
+}
+
+#banner td > span {
+    width: 120px;
+    height: 46px;
+    background: #F5F5F5;
+    display: inline-block;
     text-align: center;
+    line-height: 46px;
+    margin: 6px;
+}
+
+.goods_input {
+    width: 460px;
+    right: 0;
+    height: 60px;
+    position: absolute;
+    margin-right: 120px;
+    border: none;
+    outline: none;
+
+}
+.goods_search {
+    margin-right: 60px;
+    float: right;
 }

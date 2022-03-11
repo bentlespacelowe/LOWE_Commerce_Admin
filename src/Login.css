@@ -1,0 +1,40 @@
+.login_section {
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+}
+
+
+
+.login_title {
+    font: 700 32px "Montserrat";
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.login_sub {
+    font: 700 14px "Montserrat";
+    margin-bottom: 6px;
+    margin-top: 16px;
+    color: #9C9C9C;
+}
+
+.login_section input {
+    width: 380px;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font: 700 16px "Montserrat" 
+}
+
+.login_button {
+    background-color: #333333;
+    width: 400px;
+    height: 60px;
+    border: none;
+    margin-top: 40px;
+    color: #ffffff;
+    font: 700 16px "Montserrat";
+}
