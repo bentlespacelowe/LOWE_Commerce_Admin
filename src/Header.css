@@ -1,21 +1,31 @@
 .header {
     position: fixed;
-    width: 100%;
+    width: 160px;
     z-index: 10;
-    height: 60px;
-    line-height: 60px;
-    top: 0;
+    height: 100vh;
+    left: 0;
     background-color: white;
     text-align: center;
     border-bottom: 1px solid #333333;
   }
   
-  .header a {
-    margin: 25px;
+  .header div {
+    font-weight: 400;
+    width: 160px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 16px;
+  }
+
+  .list_background {
+    background-color: #F5F5F5;
+    font-weight: 700;
+  }
+
+  .list_background > a {
     font-weight: 700;
   }
 
   .header span {
-    margin: 25px;
-    font-weight: 700;
+    cursor: pointer;
   }

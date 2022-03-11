@@ -66,13 +66,15 @@ class create extends Component {
                     document.getElementById("gMainimgMain").value = img[i].main
                     document.getElementById("gMainimgSub").value = img[i].sub
 
-                } else if (img[i].imgType === 2) {
+                } 
+                if (img[i].imgType === 2) {
                     BAimg.push({
                         main: img[i].main,
                         beforeimg: img[i].beforeimg,
                         afterimg: img[i].afterimg,
                     })
-                } else if (img[i].imgType === 1) {
+                } 
+                if (img[i].imgType === 1) {
                     for (let j = 0; j < img[i].Urls.length; j++) {
                         subimgurl.push({
                             url: img[i].Urls[j].url

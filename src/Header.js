@@ -19,23 +19,54 @@ class Header extends Component {
             <header className="header">
                 {login === "admin" ?
                     <>
-                        <a href="/banners">배너</a>
-                        <a href="/goods">상품</a>
-                        <a href="/designers">디자이너</a>
-                        <a href="/users">유저</a>
+                        <div style={{marginBottom: "20px", font: "700 20px Montserrat", lineHeight: "80px"}}>{login}</div>
+                        <div className={this.props.list === 1 ? "list_background" : null}>
+                            <a href="/banners">배너</a>
+                        </div>
+                        <div  className={this.props.list === 2 ? "list_background" : null}>
+                            <a href="/goods">상품</a>
+                        </div>
+                        <div className={this.props.list === 3 ? "list_background" : null}>
+                            <a href="/designers">디자이너</a>
+                        </div>
+                        <div className={this.props.list === 4 ? "list_background" : null}>
+                            <a href="/users">유저</a>
+                        </div>
+                        <div className={this.props.list === 5 ? "list_background" : null}>
+                            <a href="/coupons">쿠폰</a>
+                        </div>
+                        <div className={this.props.list === 6 ? "list_background" : null}>
+                            <a href="/reviews">리뷰</a>
+                        </div>
                     </> :
                     login === "store" ?
                         <>
-                            <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>배너</span>
-                            <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>상품</span>
-                            <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>디자이너</span>
-                            <a href="/users">유저</a>
+                            <div>
+                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>배너</span>
+                            </div>
+                            <div>
+                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>상품</span>
+                            </div>
+                            <div>
+                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>디자이너</span>
+                            </div>
+                            <div className={this.props.list === 4 ? "list_background" : null}>
+                                <a href="/users">유저</a>
+                            </div>
                         </> :
                         <>
-                            <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>배너</span>
-                            <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>상품</span>
-                            <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>디자이너</span>
-                            <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>유저</span>
+                            <div className={!this.props.list ? "list_background" : null}>
+                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>배너</span>
+                            </div>
+                            <div>
+                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>상품</span>
+                            </div>
+                            <div>
+                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>디자이너</span>
+                            </div>
+                            <div>
+                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>유저</span>
+                            </div>
                         </>
                 }
             </header>

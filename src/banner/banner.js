@@ -2,6 +2,7 @@ import { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import "./banner.css"
+import Header from "../Header";
 
 class banner extends Component {
     constructor(props) {
@@ -33,181 +34,201 @@ class banner extends Component {
 
     render() {
         return (
-            <section id="banner">
-                <div style={{fontWeight: "700", fontSize: "20px", margin: "20px", marginBottom: "40px"}}>메인배너</div>
-            {
-                this.state.data.length > 0 ?
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>제목</th>
-                                <th>내용</th>
-                                                   
-                                <th>링크</th>
-                                <th>사진</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.data.map((e) => (
-                                <tr key={e.id}>
-                                    {e.type === 1 ?
-                                        <>
-                                            <td>{e.title}</td>
-                                            <td>{e.content}</td>
-                                                                                        
-                                            <td>{e.url}</td>
-                                            <td><img src={e.img} alt="이미지" style={{ width: "200px" }} /></td>
-                                            <td>
-                                                <Link to={{
-                                                    pathname: "/banner/edit/" + e.id,
-                                                    state: {
-                                                        e
-                                                    }
-                                                }}>수정</Link>
-                                            </td>
-                                            <td onClick={this.removeBanner(e.id)}>삭제</td>
-                                        </>
-                                        : 
-                                        null}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table> : null
-            }
-            <div  style={{fontWeight: "700", fontSize: "15px", margin: "20px", marginBottom: "40px"}}>
-                <a href="/banner/create/1">배너 생성</a>
-            </div>
-                <div style={{fontWeight: "700", fontSize: "20px", margin: "20px", marginBottom: "40px"}}>이벤트 상품 띠배너</div>
-                {
-                    this.state.data.length > 0 ?
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>제목</th>
-                                    <th>내용</th>
-                                                           
-                                    <th>링크</th>
-                                    <th>사진</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.data.map((e) => (
-                                    <tr key={e.id}>
-                                        {e.type === 2 ?
-                                            <>
-                                                <td>{e.title}</td>
-                                                <td>{e.content}</td>
-                                                                                                
-                                                <td>{e.url}</td>
-                                                <td><img src={e.img} alt="이미지" style={{ width: "150px" }} /></td>
-                                                <td>
-                                                    <Link to={{
-                                                        pathname: "/banner/edit/" + e.id,
-                                                        state: {
-                                                            e
-                                                        }
-                                                    }}>수정</Link>
-                                                </td>
-                                                <td onClick={this.removeBanner(e.id)}>삭제</td>
-                                            </>
-                                            : 
-                                            null}
+            <>
+                <section id="banner">
+                <Header list={1} />
+                <div style={{ width: "100%", justifyContent: "space-between", height: "60px", paddingTop: "90px" }}>
+                    <span className="table_title">메인배너</span>
+                    <span className="create_button">
+                        <a href="/banner/create/1">+ 메인배너 추가</a>
+                    </span>
+                </div >
+                    {
+                        this.state.data.length > 0 ?
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>순서</th>
+                                        <th>사진</th>
+                                        <th>제목</th>
+                                        <th>링크</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table> : null
-                }
-                <div  style={{fontWeight: "700", fontSize: "15px", margin: "20px", marginBottom: "40px"}}>
-                    <a href="/banner/create/2">배너 생성</a>
-                </div>
-                <div style={{fontWeight: "700", fontSize: "20px", margin: "20px", marginBottom: "40px"}}>상품 띠배너</div>
-                {
-                    this.state.data.length > 0 ?
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>제목</th>
-                                    <th>내용</th>
-                                                           
-                                    <th>링크</th>
-                                    <th>사진</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.data.map((e) => (
-                                    <tr key={e.id}>
-                                        {e.type === 3 ?
-                                            <>
-                                                <td>{e.title}</td>
-                                                <td>{e.content}</td>
-                                                                                                
-                                                <td>{e.url}</td>
-                                                <td><img src={e.img} alt="이미지" style={{ width: "150px" }} /></td>
-                                                <td>
-                                                    <Link to={{
-                                                        pathname: "/banner/edit/" + e.id,
-                                                        state: {
-                                                            e
-                                                        }
-                                                    }}>수정</Link>
-                                                </td>
-                                                <td onClick={this.removeBanner(e.id)}>삭제</td>
-                                            </>
-                                            : 
-                                            null}
+                                </thead>
+                                <tbody>
+                                    {this.state.data.map((e, i) => (
+                                        <tr key={e.id}>
+                                            {e.type === 1 ?
+                                                <>
+                                                    <td style={{ width: "32px" }} >0{i + 1}</td>
+                                                    <td style={{ width: "214px" }} ><img src={e.img} alt="이미지" style={{ width: "214px" }} /></td>
+                                                    <td style={{ width: "176px" }}>{e.title}</td>
+                                                    <td>{e.url}</td>
+                                                    <td style={{ width: "308px", textAlign: "center" }}>
+                                                        <span>
+                                                        <Link to={{
+                                                            pathname: "/banner/edit/" + e.id,
+                                                            state: {
+                                                                e
+                                                            }
+                                                        }}>수정</Link>
+                                                        </span>
+                                                        <span onClick={this.removeBanner(e.id)}>
+                                                        삭제
+                                                        </span>
+                                                    </td>
+                                                </>
+                                                :
+                                                null}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table> : null
+                    }
+                    <div style={{ width: "100%", justifyContent: "space-between", height: "60px", paddingTop: "90px" }}>
+                        <span className="table_title">이벤트 상품 띠배너</span>
+                        <span className="create_button">
+                            <a href="/banner/create/2">+ 이벤트 상품 띠배너 추가</a>
+                        </span>
+                    </div >
+                    {
+                        this.state.data.length > 0 ?
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>순서</th>
+                                        <th>사진</th>
+                                        <th>제목</th>
+                                        <th>링크</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table> : null
-                }
-                <div  style={{fontWeight: "700", fontSize: "15px", margin: "20px"}}>
-                    <a href="/banner/create/3">배너 생성</a>
-                </div>
+                                </thead>
+                                <tbody>
+                                    {this.state.data.map((e, i) => (
+                                        <tr key={e.id}>
+                                            {e.type === 2 ?
+                                                <>
+                                                    <td style={{ width: "32px" }} >0{i + 1}</td>
+                                                    <td style={{ width: "214px" }} ><img src={e.img} alt="이미지" style={{ width: "214px" }} /></td>
+                                                    <td style={{ width: "176px" }}>{e.title}</td>
+                                                    <td>{e.url}</td>
+                                                    <td style={{ width: "308px", textAlign: "center" }}>
+                                                        <span>
+                                                        <Link to={{
+                                                            pathname: "/banner/edit/" + e.id,
+                                                            state: {
+                                                                e
+                                                            }
+                                                        }}>수정</Link>
+                                                        </span>
+                                                        <span onClick={this.removeBanner(e.id)}>
+                                                        삭제
+                                                        </span>
+                                                    </td>
+                                                </>
+                                                :
+                                                null}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table> : null
+                    }
+                    <div style={{ width: "100%", justifyContent: "space-between", height: "60px", paddingTop: "90px" }}>
+                        <span className="table_title">상품 띠배너</span>
+                        <span className="create_button">
+                            <a href="/banner/create/3">+ 상품 띠배너 추가</a>
+                        </span>
+                    </div >
+                    {
+                        this.state.data.length > 0 ?
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>순서</th>
+                                        <th>사진</th>
+                                        <th>제목</th>
+                                        <th>링크</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.data.map((e, i) => (
+                                        <tr key={e.id}>
+                                            {e.type === 3 ?
+                                                <>
+                                                    <td style={{ width: "32px" }} >0{i + 1}</td>
+                                                    <td style={{ width: "214px" }} ><img src={e.img} alt="이미지" style={{ width: "214px" }} /></td>
+                                                    <td style={{ width: "176px" }}>{e.title}</td>
+                                                    <td>{e.url}</td>
+                                                    <td style={{ width: "308px", textAlign: "center" }}>
+                                                        <span>
+                                                        <Link to={{
+                                                            pathname: "/banner/edit/" + e.id,
+                                                            state: {
+                                                                e
+                                                            }
+                                                        }}>수정</Link>
+                                                        </span>
+                                                        <span onClick={this.removeBanner(e.id)}>
+                                                        삭제
+                                                        </span>
+                                                    </td>
+                                                </>
+                                                :
+                                                null}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table> : null
+                    }
+                    <div style={{ fontWeight: "700", fontSize: "15px", margin: "20px" }}>
+                        <a href="/banner/create/3">배너 생성</a>
+                    </div>
 
-                <div style={{fontWeight: "700", fontSize: "20px", margin: "20px", marginBottom: "40px"}}>홈 띠배너</div>
-                {
-                    this.state.data.length > 0 ?
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>제목</th>
-                                    <th>내용</th>
-                                                           
-                                    <th>링크</th>
-                                    <th>사진</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.data.map((e) => (
-                                    <tr key={e.id}>
-                                        {e.type === 4 ?
-                                            <>
-                                                <td>{e.title}</td>
-                                                <td>{e.content}</td>
-                                                                                                
-                                                <td>{e.url}</td>
-                                                <td><img src={e.img} alt="이미지" style={{ width: "150px" }} /></td>
-                                                <td>
-                                                    <Link to={{
-                                                        pathname: "/banner/edit/" + e.id,
-                                                        state: {
-                                                            e
-                                                        }
-                                                    }}>수정</Link>
-                                                </td>
-                                                <td onClick={this.removeBanner(e.id)}>삭제</td>
-                                            </>
-                                            : 
-                                            null}
+                    <div style={{ fontWeight: "700", fontSize: "20px", margin: "20px", marginBottom: "40px" }}>홈 띠배너</div>
+                    {
+                        this.state.data.length > 0 ?
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>순서</th>
+                                        <th>사진</th>
+                                        <th>제목</th>
+                                        <th>링크</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table> : null
-                }
-                <div  style={{fontWeight: "700", fontSize: "15px", margin: "20px"}}>
-                    <a href="/banner/create/4">배너 생성</a>
-                </div>
-            </section>
+                                </thead>
+                                <tbody>
+                                    {this.state.data.map((e, i) => (
+                                        <tr key={e.id}>
+                                            {e.type === 4 ?
+                                                <>
+                                                    <td style={{ width: "32px" }} >0{i + 1}</td>
+                                                    <td style={{ width: "214px" }} ><img src={e.img} alt="이미지" style={{ width: "214px" }} /></td>
+                                                    <td style={{ width: "176px" }}>{e.title}</td>
+                                                    <td>{e.url}</td>
+                                                    <td style={{ width: "308px", textAlign: "center" }}>
+                                                        <span>
+                                                        <Link to={{
+                                                            pathname: "/banner/edit/" + e.id,
+                                                            state: {
+                                                                e
+                                                            }
+                                                        }}>수정</Link>
+                                                        </span>
+                                                        <span onClick={this.removeBanner(e.id)}>
+                                                        삭제
+                                                        </span>
+                                                    </td>
+                                                </>
+                                                :
+                                                null}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table> : null
+                    }
+                    <div style={{ fontWeight: "700", fontSize: "15px", margin: "20px" }}>
+                        <a href="/banner/create/4">배너 생성</a>
+                    </div>
+                </section>
+            </>
         )
     }
 }

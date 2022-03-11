@@ -1,0 +1,12 @@
+.header2 {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    height: 80px;
+    line-height: 80px;
+    top: 0;
+    background-color: white;
+    text-align: center;
+    border-bottom: 1px solid #333333;
+    border: none;
+}

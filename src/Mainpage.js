@@ -24,15 +24,10 @@ class Mainpage extends Component {
 
   render() {
     return ( 
-    <div style={{overflow: "scroll"}}>
+    <div style={{width: "100%", height: "100vh", background: "#f5f5f5"}}>
     {
       window.localStorage.getItem("login") ?
-        <div>
-            <a href="/banners">배너</a>
-            <a href="/goods">상품</a>
-            <a href="/designers">디자이너 추가</a>
-            <a href="/users">유저</a>
-        </div>
+      null
         :
         <Login handlelogin={this.handlelogin} />
     }
