@@ -31,6 +31,7 @@ class create extends Component {
             Subimg: '',
             SubimgTotal: [],
             thumbnail: '',
+            ManagerId: null,
         };
     }
 
@@ -90,7 +91,7 @@ class create extends Component {
 
             console.log(mainimg)
 
-            document.getElementById("gdesigner_name").value = this.props.location.state.data.board.designer_name
+            document.getElementById("gdesigner_name").value = this.props.location.state.data.board.ManagerId
             document.getElementById("gstore").value = this.props.location.state.data.board.store
             document.getElementById("gname").value = this.props.location.state.data.board.name
             document.getElementById("gcontent").value = this.props.location.state.data.board.content
@@ -104,6 +105,7 @@ class create extends Component {
             document.getElementById("glength").value = this.props.location.state.data.board.length
 
             this.setState({
+                ManagerId: this.props.location.state.data.board.ManagerId,
                 designer_name: this.props.location.state.data.board.designer_name,
                 store: this.props.location.state.data.board.store,
                 name: this.props.location.state.data.board.name,
@@ -151,6 +153,8 @@ class create extends Component {
                 }).then(res => {
                     this.setState({ [key]: res.data.url });
                 })
+            }else if(key === "designer_name"){
+                this.setState({ ManagerId: e.target.value,[key]: document.getElementById("gdesigner_name").options[document.getElementById("gdesigner_name").selectedIndex].text });
         } else {
             this.setState({ [key]: e.target.value });
         }
@@ -172,7 +176,6 @@ class create extends Component {
             },
         ];
         axios.post("http://3.36.218.192:5000/createBoard", {
-            ManagerId: 1,
             phone: "0",
             designer_name: this.state.designer_name,
             store: this.state.store,
@@ -189,6 +192,7 @@ class create extends Component {
             gender: Number(this.state.gender),
             length: Number(this.state.length),
             thumbnail: this.state.thumbnail,
+            ManagerId: Number(this.state.ManagerId),
             mainImg,
             beforeAfterImg,
             surgeryImg,
@@ -215,7 +219,6 @@ class create extends Component {
         ];
         await axios.post("http://3.36.218.192:5000/updateBoard", {
             id: Number(window.location.pathname.split("/")[3]),
-            ManagerId: 1,
             phone: "0",
             designer_name: this.state.designer_name,
             store: this.state.store,
@@ -231,6 +234,7 @@ class create extends Component {
             time: 0,
             gender: Number(this.state.gender),
             length: Number(this.state.length),
+            ManagerId: Number(this.state.ManagerId),
             thumbnail: this.state.thumbnail,
             mainImg,
             beforeAfterImg,
@@ -341,7 +345,7 @@ class create extends Component {
                     <option value={board.designer_name ? board.designer_name : ''}>{board.designer_name ? board.designer_name : null}</option>
                     {this.state.data ?
                         this.state.data.map((e) => (
-                            <option key={e.id} value={e.name} >{e.name}</option>
+                            <option key={e.id} value={e.id}>{e.name}</option>
                         )) : null}
                 </select>
                 <select name="store" id="gstore" onChange={this.handleInputValue("store")}>

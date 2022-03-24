@@ -10,29 +10,27 @@ class coupon extends Component {
             text: "",
             number: 0,
             used: 0,
+            expired: 0
         };
     }
 
     componentDidMount = () => {
         axios.post("http://3.36.218.192:5000/getAllCoupon", {
         }).then((res) => {
-            let arr = [];
             let data = res.data;
+            let used = 0;
+            let expired =0;
+            this.setState({ data: data, number: data.length, })
             for(let i=0; i < data.length; i++){
-                if(data[i].UserId){
-                    axios.post("http://3.36.218.192:5000/getOneUser", {
-                        id: data[i].UserId,
-                    }).then((res) => {
-                        data[i].UserId = res.data
-                        arr.push(data[i])
-                        this.setState({ data: arr, number: arr.length, })
-                    });
+                if(data[i].used === 0){
+                    used = used + 1
                 }
-                if(data[i].used === 0 ){
-                    this.setState({used: this.state.used + 1})
+                if(data[i].deletedAt){
+                    expired = expired + 1;
                 }
             }
-            console.log(arr)
+            this.setState({ used: used, expired: expired })
+
         });
 
     }
@@ -91,10 +89,10 @@ class coupon extends Component {
                                         <td>{e.id}</td>
                                         <td>{e.price}</td>
                                         <td>{e.content}</td>
-                                        <td>{e.UserId[0] ? e.UserId[0].login_id : "탈퇴유저"}</td>
+                                        <td>{e.User ? e.User.login_id : "탈퇴회원"}</td>
                                         <td>{e.used === 1 ? "미사용" : "사용"}</td>
                                         <td>{e.createdAt.slice(0, 16)}</td>
-                                        <td>{e.expired.slice(0, 16)}</td>
+                                        <td>{!e.deletedAt ? e.expired ? e.expired.slice(0, 16) : null : "만료된 쿠폰"}</td>
                                         <td>{e.minimum}</td>
                                         <td><input type="text" onChange={this.handleInputValue("text")}></input></td>
                                         <td><p onClick={this.onClickUse(e)}>수정</p></td>
