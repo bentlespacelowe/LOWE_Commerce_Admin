@@ -77,7 +77,7 @@ class user extends Component {
                             <tbody>
                                 {this.state.data.map((e, i) => (
                                     <tr key={e.id}>
-                                        <td>{i}</td>
+                                        <td>{i+1}</td>
                                         <td style={{width: "116px"}}>{e.name}</td>
                                         <td>{e.phone}</td>
                                         <td>{e.birthday.slice(0, 10)}</td>

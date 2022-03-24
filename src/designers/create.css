@@ -80,3 +80,9 @@
     background-color: #333333;
     color: #ffffff;
 }
+
+
+.Designer_surgery th, .Designer_surgery td {
+    padding: 15px;
+    width: fit-content;
+}

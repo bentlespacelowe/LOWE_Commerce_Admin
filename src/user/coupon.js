@@ -45,10 +45,10 @@ class coupon extends Component {
         console.log(this.state)
         return (
             <section id="coupon">
+            <Header list={4} />
                 <div>
                     <a href={`/coupon/create/${this.state.userid}`}>쿠폰생성</a>
                 </div>
-            <Header list={4} />
                 {
                     this.state.data ?
                         <table>
@@ -76,6 +76,7 @@ class coupon extends Component {
                                         <td>{e.expired.slice(0, 16)}</td>
                                         <td>{e.minimum}</td>
                                         <td><input type="text" onChange={this.handleInputValue("text")}></input></td>
+                                        <td>{e.text ? e.text : null}</td>
                                         <td><p onClick={this.onClickUse(e)}>수정</p></td>
                                         <td><p onClick={this.onClickDelete(e)}>삭제</p></td>
                                         <td>{e.text ? e.text : null}</td>

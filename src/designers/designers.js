@@ -68,8 +68,8 @@ class designers extends Component {
                                 <tr>
                                     <th>이름</th>
                                     <th>지점</th>
-                                    <th>소개</th>
-                                    <th>프로필</th>
+                                    <th>해쉬태그</th>
+                                    <th>쿠폰유무</th>
                                     <th>예약</th>
                                 </tr>
                             </thead>
@@ -78,8 +78,13 @@ class designers extends Component {
                                     <tr key={e.id}>
                                         <td>{e.name}</td>
                                         <td>{e.store}</td>
-                                        <td>{e.introduction}</td>
-                                        <td>{e.home}</td>
+                                        <td>
+                                            {e.Hashtags.length ? 
+                                            <>
+                                                {e.Hashtags[0].content}
+                                            </>
+                                        : "없음"}</td>
+                                        <td>{JSON.parse(e.coupons) ? "있음" : "없음"}</td>
                                         <td>{e.reserve_url}</td>
                                         <td>
 
