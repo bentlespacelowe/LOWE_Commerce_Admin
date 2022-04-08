@@ -14,6 +14,8 @@ import Header2 from "./header2";
 import Coupons from "./coupon/coupon";
 import Reviews from "./review/review";
 import couponcreate from "./user/couponcreate";
+import Statistic from "./statistic/Statistic";
+import Payment from "./payment/payment";
 
 
 class App extends Component {
@@ -47,6 +49,8 @@ class App extends Component {
               <Route path="/coupons" component={Coupons} />
               <Route path="/reviews" component={Reviews} />
               <Route path="/coupon/create/:id" component={couponcreate} />
+              <Route path="/statistics" component={Statistic} />
+              <Route path="/payments" component={Payment} />
             </> :
             window.localStorage.getItem("login") === "store" ?
               <>

@@ -1,0 +1,29 @@
+#payment {
+    padding-left: 240px;
+    background-color: #F5F5F5;
+    margin-top: 80px;
+    min-height: 100vh;
+}
+
+.table_title {
+    font: 700 30px "Noto Sans";
+    line-height:  60px;
+}
+
+#payment table {
+    margin-top: 25px;
+}
+
+#payment th, #payment td {
+    padding: 12px;
+    text-align: left;
+}
+
+.text-deco td {
+    color: #9C9C9C;
+    text-decoration-line: line-through;
+}
+
+.text-deco td div {
+    color: #333333;
+}
