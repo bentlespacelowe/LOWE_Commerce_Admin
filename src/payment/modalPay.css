@@ -1,0 +1,71 @@
+.Signup_modalBody {
+    z-index: 150;  
+    position: fixed;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #000000D9; 
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+.Signup_modalBody::-webkit-scrollbar{ display:none; }
+
+
+.modalclick {
+
+    z-index: 150;  
+    transition: opacity 0.4s ease-in-out;
+    position: fixed;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    z-index: 0;
+}
+
+.Signup_modalInner {
+    max-width: 428px;
+    width: 100%;
+    margin: auto;
+    color: #333333;
+    font: 500 17px "Noto Sans";
+    z-index: 1;
+    padding: 20px 12px 52px 12px;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+.payment_modal_request{
+    margin-bottom: 12px;
+}
+.payment_modal_request_title {
+    font: 700 20px "Noto Sans";
+    padding: 15px;
+}
+.payment_modal_refund_title{
+    padding: 12px;
+    font: 700 18px "Noto Sans";
+}
+.payment_modal_request_content{
+
+    font: 500 16px "Noto Sans";
+    padding: 15px;
+}
+
+.payment_modal_request_img{
+    width: 93%;
+    padding: 15px;
+
+}
+.payment_modal_request_img img {
+    width: 100%;
+    margin-bottom: 15px;
+
+}

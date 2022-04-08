@@ -38,6 +38,12 @@ class Header extends Component {
                         <div className={this.props.list === 6 ? "list_background" : null}>
                             <a href="/reviews">리뷰</a>
                         </div>
+                        <div className={this.props.list === 7 ? "list_background" : null}>
+                            <a href="/statistics">통계</a>
+                        </div>
+                        <div className={this.props.list === 8 ? "list_background" : null}>
+                            <a href="/payments">결제</a>
+                        </div>
                     </> :
                     login === "store" ?
                         <>

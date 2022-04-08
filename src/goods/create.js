@@ -154,7 +154,8 @@ class create extends Component {
                     this.setState({ [key]: res.data.url });
                 })
             }else if(key === "designer_name"){
-                this.setState({ ManagerId: e.target.value,[key]: document.getElementById("gdesigner_name").options[document.getElementById("gdesigner_name").selectedIndex].text });
+                let id =  Number(e.target.value)
+                this.setState({ ManagerId: id,[key]: document.getElementById("gdesigner_name").options[document.getElementById("gdesigner_name").selectedIndex].text });
         } else {
             this.setState({ [key]: e.target.value });
         }
@@ -342,7 +343,7 @@ class create extends Component {
             <div className="goods">
                 <span>디자이너 </span>
                 <select name="designer_name" id="gdesigner_name" onChange={this.handleInputValue("designer_name")}>
-                    <option value={board.designer_name ? board.designer_name : ''}>{board.designer_name ? board.designer_name : null}</option>
+                    <option value={board.ManagerId ? board.ManagerId : ''}>{board.designer_name ? board.designer_name : null}</option>
                     {this.state.data ?
                         this.state.data.map((e) => (
                             <option key={e.id} value={e.id}>{e.name}</option>

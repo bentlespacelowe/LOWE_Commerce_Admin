@@ -1,0 +1,20 @@
+#Sboard {
+    padding-left: 240px;
+    background-color: #F5F5F5;
+    margin-top: 80px;
+    min-height: 100vh;
+}
+
+.table_title {
+    font: 700 30px "Noto Sans";
+    line-height:  60px;
+}
+
+#Sboard table {
+    margin-top: 25px;
+}
+
+#Sboard th, #Sboard td {
+    padding: 12px;
+    text-align: left;
+}

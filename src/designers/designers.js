@@ -70,6 +70,7 @@ class designers extends Component {
                                     <th>지점</th>
                                     <th>해쉬태그</th>
                                     <th>쿠폰유무</th>
+                                    <th>즐겨찾기</th>
                                     <th>예약</th>
                                 </tr>
                             </thead>
@@ -85,6 +86,7 @@ class designers extends Component {
                                             </>
                                         : "없음"}</td>
                                         <td>{JSON.parse(e.coupons) ? "있음" : "없음"}</td>
+                                        <td>{e.Favorites.length}개</td>
                                         <td>{e.reserve_url}</td>
                                         <td>
 
