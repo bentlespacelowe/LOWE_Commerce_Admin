@@ -32,7 +32,7 @@
 }
 
 .Signup_modalInner {
-    max-width: 428px;
+    max-width: 720px;
     width: 100%;
     margin: auto;
     color: #333333;
@@ -54,9 +54,15 @@
     font: 700 18px "Noto Sans";
 }
 .payment_modal_request_content{
-
     font: 500 16px "Noto Sans";
     padding: 15px;
+    width: 93%;
+}
+
+.payment_modal_request_content pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 150%;
 }
 
 .payment_modal_request_img{
@@ -68,4 +74,13 @@
     width: 100%;
     margin-bottom: 15px;
 
+}
+
+.payment_modal_request table {
+    margin-top: 0px;
+}
+
+.payment_modal_request th, .payment_modal_request td {
+    padding: 12px;
+    text-align: left;
 }

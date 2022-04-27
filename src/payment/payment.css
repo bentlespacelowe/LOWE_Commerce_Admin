@@ -27,3 +27,20 @@
 .text-deco td div {
     color: #333333;
 }
+
+
+.table_title {
+    font: 700 30px "Noto Sans";
+    line-height:  60px;
+}
+
+
+#payment .input {
+    width: 460px;
+    right: 0;
+    height: 60px;
+    position: absolute;
+    margin-right: 120px;
+    border: none;
+    outline: none;
+}

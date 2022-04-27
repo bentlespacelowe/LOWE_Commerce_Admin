@@ -41,7 +41,6 @@ class user extends Component {
     }
 
 
-
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value, });
     };
