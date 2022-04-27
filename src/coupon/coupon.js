@@ -9,8 +9,14 @@ class coupon extends Component {
             data: "",
             text: "",
             number: 0,
-            used: 0,
-            expired: 0
+            exp: [],
+            use: [],
+            all: [],
+            notuse: [],
+            filter: 0,
+            startdate: "",
+            enddate: "",
+            nextdate: "",
         };
     }
 
@@ -18,18 +24,38 @@ class coupon extends Component {
         axios.post("http://3.36.218.192:5000/getAllCoupon", {
         }).then((res) => {
             let data = res.data;
-            let used = 0;
-            let expired =0;
-            this.setState({ data: data, number: data.length, })
-            for(let i=0; i < data.length; i++){
-                if(data[i].used === 0){
-                    used = used + 1
-                }
-                if(data[i].deletedAt){
-                    expired = expired + 1;
+            let exp = [];
+            let all = [];
+            let use = [];
+            let notuse = [];
+            this.setState({ number: data.length, })
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].used === 0) {
+
+                    if (data[i].deletedAt) {
+                        exp.unshift(data[i])
+                        all.unshift(data[i])
+                    } else {
+                        use.unshift(data[i])
+                        all.unshift(data[i])
+                    }
+                } else {
+                    if (data[i].deletedAt) {
+                        exp.unshift(data[i])
+                        all.unshift(data[i])
+                    } else {
+                        notuse.unshift(data[i])
+                        all.unshift(data[i])
+                    }
                 }
             }
-            this.setState({ used: used, expired: expired })
+            this.setState({
+                exp: exp,
+                use: use,
+                all: all,
+                notuse: notuse,
+                data: all
+            })
 
         });
 
@@ -55,23 +81,61 @@ class coupon extends Component {
 
     }
 
+    onClickkakao = () => {
+        axios.post("http://3.36.218.192:5000/alert", {
+            type: 1
+        }).then((res) => {
+            window.alert("카톡을 보내셨습니다.")
+        }).catch((err) => {
+            console.log(err)
+        })
+
+    }
+
 
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value });
     }
+    selectFilter = (v) => (e) => {
+        this.setState({ filter: e.target.value })
+        if (Number(e.target.value) === 0) {
+            this.setState({ data: this.state.all })
+        } else if (Number(e.target.value) === 1) {
+            this.setState({ data: this.state.exp })
+
+        } else if (Number(e.target.value) === 2) {
+            this.setState({ data: this.state.use })
+
+        } else if (Number(e.target.value) === 3) {
+            this.setState({ data: this.state.notuse })
+
+        }
+
+    }
+
 
     render() {
         console.log(this.state.data)
         return (
             <section id="coupon">
-            <Header list={5} />
-            <div>총 {this.state.number} / 사용 {this.state.used}</div>
+                <Header list={5} />
+                <button onClick={this.onClickkakao}>만료쿠폰 카톡</button>
+                <div style={{ marginTop: "50px" }}>
+                    <select onChange={this.selectFilter("filter")}>
+                        <option value={0}>전체보기</option>
+                        <option value={1}>만료된쿠폰</option>
+                        <option value={2}>사용한쿠폰</option>
+                        <option value={3}>사용가능쿠폰</option>
+                    </select>
+                </div>
+                <div>총 {this.state.number} / 사용 {this.state.use.length} / 만료 {this.state.exp.length}</div>
+                
                 {
                     this.state.data ?
                         <table>
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>{this.state.data.length}개</th>
                                     <th>금액</th>
                                     <th>용도</th>
                                     <th>유저</th>

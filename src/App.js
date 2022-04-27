@@ -56,6 +56,7 @@ class App extends Component {
               <>
                 <Route path="/users" component={User} />
                 <Route path="/user/coupon/:id" component={Coupon} />
+                <Route path="/payments" component={Payment} />
               </> : null
           }
         </Switch>

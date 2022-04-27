@@ -47,17 +47,11 @@ class Header extends Component {
                     </> :
                     login === "store" ?
                         <>
-                            <div>
-                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>배너</span>
-                            </div>
-                            <div>
-                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>상품</span>
-                            </div>
-                            <div>
-                                <span onClick={(e) => { e.preventDefault(); window.alert("권한이 없습니다") }}>디자이너</span>
-                            </div>
                             <div className={this.props.list === 4 ? "list_background" : null}>
                                 <a href="/users">유저</a>
+                            </div>
+                            <div className={this.props.list === 8 ? "list_background" : null}>
+                                <a href="/payments">결제</a>
                             </div>
                         </> :
                         <>
