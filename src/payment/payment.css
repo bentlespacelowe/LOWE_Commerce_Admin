@@ -1,7 +1,7 @@
 #payment {
     padding-left: 240px;
+    padding-right: 60px;
     background-color: #F5F5F5;
-    margin-top: 80px;
     min-height: 100vh;
 }
 
@@ -12,15 +12,26 @@
 
 #payment table {
     margin-top: 25px;
+    border-spacing: 0px 12px;
 }
 
 #payment th, #payment td {
     padding: 12px;
     text-align: left;
+    height: 48px;
+}
+#payment tbody tr {
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+
+#payment tbody > .none-deco > td {
+    background: #FFFFFF;
 }
 
 .text-deco td {
-    color: #9C9C9C;
+    background: #9C9C9C;
     text-decoration-line: line-through;
 }
 
@@ -36,11 +47,105 @@
 
 
 #payment .input {
-    width: 460px;
+    width: 420px;
     right: 0;
-    height: 60px;
+    height: 28px;
     position: absolute;
+    padding: 16px 20px;
     margin-right: 120px;
     border: none;
     outline: none;
+    border-radius: 8px 0px 0px 8px;
+    font: 500 16px 'Noto Sans'
+}
+
+#payment .input::placeholder {
+    font: 500 16px 'Montserrat'
+}
+
+#payment .payment_search {
+    float: right;
+    border-radius: 0px 8px 8px 0px;
+}
+.Payment_category{
+    width: 100%;
+    height: 45px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Payment_category > div {
+    float: left;
+    margin-right: 40px;
+}
+
+.Payment_category >div > select {
+    font: 700 14px "Noto Sans";
+    width: 96px;
+    height: 38px;
+    border: none;
+    border-radius: 8px;
+    -webkit-appearance:none; 
+    -moz-appearance:none; 
+    appearance:none;
+    text-align-last: center;
+}
+
+.Payment_category >div > input[type="date"] {
+    font: 400 14px "Noto Sans";
+    border: none;
+    border-radius: 8px;
+    width: 94px;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: 38px;
+}
+
+.Payment_category >div  button {
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    background: #FFFFFF;
+    width: 76px;
+    height: 38px;
+    font: 700 14px "Noto Sans";
+    margin-left: 12px;
+}
+
+.Payment_data {
+    display: flex;
+    justify-content: space-between;
+}
+.Payment_data_title{
+    text-align: center;
+    padding: 32px 0 25px 0;
+    background: #FFFFFF;
+    border-radius: 8px 8px 0 0;
+}
+
+.Payment_data_title > div {
+    padding: 5px 12px;
+    color: #9C9C9C;
+    background: #F5F5F5;
+    border-radius: 16px;
+    width: 52px;
+    font: 400 14px "Noto Sans";
+    margin: auto;
+}
+
+.Payment_data .Payment_data_content {
+    display: flex;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border-radius: 0 0 8px 8px;
+}
+.Payment_data .Payment_data_content >div {
+    width: 8.385416vw;
+    height: 80px;
+    text-align: center;
+    font: 700 20px "Montserrat";
+}
+
+.Payment_data .Payment_data_content >div >div {
+    color: #9C9C9C;
+    font: 700 14px "Noto Sans";
+    margin-top: 4px;
 }

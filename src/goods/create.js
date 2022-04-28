@@ -67,14 +67,14 @@ class create extends Component {
                     document.getElementById("gMainimgMain").value = img[i].main
                     document.getElementById("gMainimgSub").value = img[i].sub
 
-                } 
+                }
                 if (img[i].imgType === 2) {
                     BAimg.push({
                         main: img[i].main,
                         beforeimg: img[i].beforeimg,
                         afterimg: img[i].afterimg,
                     })
-                } 
+                }
                 if (img[i].imgType === 1) {
                     for (let j = 0; j < img[i].Urls.length; j++) {
                         subimgurl.push({
@@ -153,9 +153,9 @@ class create extends Component {
                 }).then(res => {
                     this.setState({ [key]: res.data.url });
                 })
-            }else if(key === "designer_name"){
-                let id =  Number(e.target.value)
-                this.setState({ ManagerId: id,[key]: document.getElementById("gdesigner_name").options[document.getElementById("gdesigner_name").selectedIndex].text });
+        } else if (key === "designer_name") {
+            let id = Number(e.target.value)
+            this.setState({ ManagerId: id, [key]: document.getElementById("gdesigner_name").options[document.getElementById("gdesigner_name").selectedIndex].text });
         } else {
             this.setState({ [key]: e.target.value });
         }
@@ -265,6 +265,33 @@ class create extends Component {
         this.setState({ beforeAfterImg: beforeAfter });
     }
 
+    onClickBaAup = (i) => () => {
+        if (i > 0) {
+            let beforeAfter = this.state.beforeAfterImg;
+            let a = beforeAfter[i]
+            let b = beforeAfter[i - 1]
+            beforeAfter[i - 1] = a;
+            beforeAfter[i] = b
+            this.setState({ beforeAfterImg: beforeAfter });
+        } else {
+            window.alert("불가능")
+        }
+    }
+
+
+    onClickBaAdown = (i) => () => {
+        if (i + 1 < this.state.beforeAfterImg.length) {
+            let beforeAfter = this.state.beforeAfterImg;
+            let a = beforeAfter[i]
+            let b = beforeAfter[i + 1]
+            beforeAfter[i + 1] = a;
+            beforeAfter[i] = b
+            this.setState({ beforeAfterImg: beforeAfter });
+        } else {
+            window.alert("불가능")
+        }
+    }
+
 
     onClickMain = () => {
         let main = this.state.Mainimgs;
@@ -282,6 +309,34 @@ class create extends Component {
         this.setState({ Mainimgs: main });
     }
 
+
+    onClickMainup = (i) => () => {
+        if (i > 0) {
+            let main = this.state.Mainimgs;
+            let a = main[i]
+            let b = main[i - 1]
+            main[i - 1] = a;
+            main[i] = b
+            this.setState({ mainimgs: main });
+        } else {
+            window.alert("불가능")
+        }
+    }
+
+
+    onClickMaindown = (i) => () => {
+        if (i + 1 < this.state.mainImg.length) {
+            let main = this.state.Mainimgs;
+            let a = main[i]
+            let b = main[i + 1]
+            main[i + 1] = a;
+            main[i] = b
+            this.setState({ mainimgs: main });
+        } else {
+            window.alert("불가능")
+        }
+    }
+
     onClickSub = () => {
         let subimg = this.state.Subimgs;
         let data = {
@@ -296,6 +351,34 @@ class create extends Component {
         let subimg = this.state.Subimgs;
         subimg.splice(i, 1);
         this.setState({ Subimgs: subimg });
+    }
+
+
+    onClickSubup = (i) => () => {
+        if (i > 0) {
+            let subimg = this.state.SubimgTotal;
+            let a = subimg[i]
+            let b = subimg[i - 1]
+            subimg[i - 1] = a;
+            subimg[i] = b
+            this.setState({ SubimgTotal: subimg });
+        } else {
+            window.alert("불가능")
+        }
+    }
+
+
+    onClickSubdown = (i) => () => {
+        if (i + 1 < this.state.mainImg.length) {
+            let subimg = this.state.SubimgTotal;
+            let a = subimg[i]
+            let b = subimg[i + 1]
+            subimg[i + 1] = a;
+            subimg[i] = b
+            this.setState({ SubimgTotal: subimg });
+        } else {
+            window.alert("불가능")
+        }
     }
 
     onClickSubtotal = () => {
@@ -468,7 +551,7 @@ class create extends Component {
                 <div style={{ marginBottom: "30px", height: "fit-content" }}>
                     <div style={{ display: "inline-block" }}>
                         <div style={{ marginTop: "40px" }}>Main img</div>
-                        <div style={{ width: "375px",  marginTop: "40px"  }}>
+                        <div style={{ width: "375px", marginTop: "40px" }}>
                             <input
                                 type="text"
                                 onChange={this.handleInputValue("MainimgMain")}
@@ -487,9 +570,12 @@ class create extends Component {
                         {
                             this.state.Mainimgs.length ?
                                 this.state.Mainimgs.map((e, i) => (
-                                    <div key={i} style={{marginTop: "10px"}}>
-                                    <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center",cursor: "pointer" }} onClick={this.onClickDelMain(i)}>x</div>
+                                    <div key={i} style={{ marginTop: "10px" }}>
+                                        <span onClick={this.onClickMainup(i)}>↑</span>
+                                        <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center", cursor: "pointer" }} onClick={this.onClickDelMain(i)}>x</div>
                                         <img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.url)} className={(this.state.thumbnail === e.url ? "push_button" : '')} src={e.url} alt={e.url}></img>
+
+                                        <span onClick={this.onClickMaindown(i)}>↓</span>
                                     </div>
                                 )) : null
                         }
@@ -512,8 +598,10 @@ class create extends Component {
                     {
                         this.state.SubimgTotal.length ?
                             this.state.SubimgTotal.map((e, i) => (
-                                <div key={i} style={{border: "1px solid #F5F5F5", marginBottom: "15px", textAlign: "center"}}>
-                                <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center",cursor: "pointer"  }} onClick={this.onClickDelSubtotal(i)}>x</div>
+                                <div key={i} style={{ border: "1px solid #F5F5F5", marginBottom: "15px", textAlign: "center" }}>
+
+                                    <span onClick={this.onClickSubup(i)}>↑</span>
+                                    <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center", cursor: "pointer" }} onClick={this.onClickDelSubtotal(i)}>x</div>
                                     <div>{e.main}</div>
                                     {e.img.map((e, j) => (
                                         <div key={j}>
@@ -521,6 +609,8 @@ class create extends Component {
                                         </div>
                                     ))
                                     }
+
+                                    <span onClick={this.onClickSubdown(i)}>↓</span>
                                 </div>
                             )) : null
                     }
@@ -531,8 +621,10 @@ class create extends Component {
                                 this.state.Subimgs.length ?
                                     this.state.Subimgs.map((e, n) => (
                                         <div key={n}>
-                                        <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center",cursor: "pointer" }} onClick={this.onClickDelSub(n)}>x</div>
+
+                                            <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center", cursor: "pointer" }} onClick={this.onClickDelSub(n)}>x</div>
                                             <img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.url)} className={(this.state.thumbnail === e.url ? "push_button" : '')} src={e.url} alt={e.url}></img>
+
                                         </div>
                                     )) : null
                             }
@@ -558,22 +650,25 @@ class create extends Component {
                         <span onClick={this.onClickSubtotal}>추가</span>
                     </div>
                 </div>
-                <div style={{ marginTop: "40px"}}>before & after</div>
+                <div style={{ marginTop: "40px" }}>before & after</div>
                 {
                     this.state.beforeAfterImg.length ?
                         this.state.beforeAfterImg.map((e, i) => (
-                            <div key={i} style={{border: "1px solid #F5F5F5", marginBottom: "15px", textAlign: "center"}}>
-                            <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center",cursor: "pointer"  }}  onClick={this.onClickDelBaA(i)}>x</div>
-                                <div style={{ justifyContent: "space-around", display: "flex", height: "170px" , marginTop: "30px"}}>
+                            <div key={i} style={{ border: "1px solid #F5F5F5", marginBottom: "15px", textAlign: "center" }}>
+                                <div style={{ width: "20px", backgroundColor: "#ffffff", position: "absolute", border: "1px solid #F5F5F5", textAlign: "center", cursor: "pointer" }} onClick={this.onClickDelBaA(i)}>x</div>
+                                <div style={{ justifyContent: "space-around", display: "flex", height: "170px", marginTop: "30px" }}>
+                                    <span onClick={this.onClickBaAup(i)}>↑</span>
                                     <span><img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.beforeimg)} className={(this.state.thumbnail === e.beforeimg ? "push_button" : '')} src={e.beforeimg} alt={e.beforeimg}></img></span>
                                     <span><img style={{ width: "150px" }} onClick={this.onClickthumbnail(e.afterimg)} className={(this.state.thumbnail === e.afterimg ? "push_button" : '')} id={e.afterimg} src={e.afterimg} alt={e.afterimg}></img></span>
+
+                                    <span onClick={this.onClickBaAdown(i)}>↓</span>
                                 </div>
                                 <div>{e.main}</div>
                             </div>
                         )) : null
                 }
-                <div style={{marginTop: "40px"}}>
-                    <label style={{width: "40px", fontSize: "13px", marginRight: "10px"}} htmlFor="board_beforeimg">before</label>
+                <div style={{ marginTop: "40px" }}>
+                    <label style={{ width: "40px", fontSize: "13px", marginRight: "10px" }} htmlFor="board_beforeimg">before</label>
                     <input
                         type="file"
                         accept="image/*"
@@ -581,7 +676,7 @@ class create extends Component {
                         id="board_beforeimg"
                         onChange={this.handleInputValue("beforeimg")}
                     />
-                    <label style={{width: "40px", fontSize: "13px"}} htmlFor="board_afterimg">after</label>
+                    <label style={{ width: "40px", fontSize: "13px" }} htmlFor="board_afterimg">after</label>
                     <input
                         type="file"
                         accept="image/*"
@@ -597,7 +692,7 @@ class create extends Component {
                         id="gbeforeAfter"
                     />
                 </div>
-                <div style={{marginBottom: "45px"}}>
+                <div style={{ marginBottom: "45px" }}>
                     <span onClick={this.onClickBaA}>추가</span>
                 </div>
                 {

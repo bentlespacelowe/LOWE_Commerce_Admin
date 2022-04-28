@@ -26,6 +26,12 @@ class user extends Component {
     }
 
 
+    onclickEnter = (e) => {
+        if(e.key === 'Enter') {
+            this.handleInputSearch();
+        }
+    }
+    
     handleInputSearch = () => {
         let keyword = this.state.search
         let data = this.state.alldata
@@ -55,7 +61,7 @@ class user extends Component {
                 <span >
                     <img onClick={this.handleInputSearch} className="goods_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
 
-                    <input onChange={this.handleInputValue("search")} placeholder="입력해주세요" type="text"></input>
+                    <input onChange={this.handleInputValue("search")} onKeyPress={this.onclickEnter}  placeholder="입력해주세요" type="text"></input>
 
                 </span>
                 </div>
