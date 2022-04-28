@@ -50,6 +50,11 @@ class goods extends Component {
     }
 
 
+    onclickEnter = (e) => {
+        if(e.key === 'Enter') {
+            this.handleInputSearch();
+        }
+    }
 
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value, result: false });
@@ -75,7 +80,7 @@ class goods extends Component {
                 <div style={{ width: "100%", justifyContent: "space-between", height: "60px", paddingTop: "90px" }}>
                     <span className="table_title">상품 목록</span>
                 <span >
-                    <input onChange={this.handleInputValue("search")} className="goods_input" placeholder="제목을 입력해주세요" type="text"></input>
+                    <input  onKeyPress={this.onclickEnter} onChange={this.handleInputValue("search")} className="goods_input" placeholder="제목을 입력해주세요" type="text"></input>
                     <img onClick={this.handleInputSearch} className="goods_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
                 </span>
                 </div>

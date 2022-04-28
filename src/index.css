@@ -37,9 +37,6 @@ body img {
   overflow: hidden;
 }
 
-section {
-  margin-top: 100px;
-}
 
 
 body input[type="text"], body input[type="radio"], body input[type="textarea"], body input[type="number"], body input[type="password"] {

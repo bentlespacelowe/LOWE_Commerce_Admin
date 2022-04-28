@@ -34,14 +34,21 @@ class Login extends Component {
   }
 
 
+  onclickEnter = (e) => {
+    if(e.key === 'Enter') {
+        this.handlesubmit();
+    }
+}
+
+
   render() {
     return (
       <div className="login_section">
         <div className="login_title">LOGIN</div>
         <div className="login_sub">아이디</div>
-        <input type="text" onChange={this.handleInputValue("id")} />
+        <input type="text" onKeyPress={this.onclickEnter} onChange={this.handleInputValue("id")} />
         <div className="login_sub">비밀번호</div>
-        <input type="password" onChange={this.handleInputValue("pw")} />
+        <input type="password" onKeyPress={this.onclickEnter} onChange={this.handleInputValue("pw")} />
         <div>
           <button className="login_button" onClick={this.handlesubmit}>로그인</button>
         </div>

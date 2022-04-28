@@ -10,7 +10,6 @@ import Coupon from "./user/coupon";
 import Goods from "./goods/goods";
 import Goodsdetail from "./goods/Board/Board";
 import GoodsCreate from "./goods/create";
-import Header2 from "./header2";
 import Coupons from "./coupon/coupon";
 import Reviews from "./review/review";
 import couponcreate from "./user/couponcreate";
@@ -29,7 +28,6 @@ class App extends Component {
   render() {
     return (
       <>
-        <Header2 />
         <Route exact path="/" component={Home} />
         <Switch>
           {window.localStorage.getItem("login") === "admin" ?
