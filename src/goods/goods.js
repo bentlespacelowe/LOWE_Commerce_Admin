@@ -72,7 +72,7 @@ class goods extends Component {
 
     render() {
         return (
-            <section id="goods">
+            <section id="good">
                 <Header list={2} />
                 <div style={{ fontWeight: "700", fontSize: "15px", margin: "10px" }}>
                     <a href="/board/create">상품 추가</a>

@@ -111,6 +111,8 @@ class Board extends Component {
                 } else {
                     this.setState({ data: [], number: 0, showdata: "" })
                 }
+
+                console.log(res.data)
             });
         } else {
             this.setState({ obj: {}, data: [], datedata: [] })
