@@ -638,7 +638,7 @@ class create extends Component {
                         <label htmlFor="board_Subimg">이미지 선택</label>
                         <input
                             type="file"
-                            accept="image/*"
+                            accept="image/*, .avi, .mp4"
                             size="40"
                             id="board_Subimg"
                             onChange={this.handleInputValue("Subimg")}

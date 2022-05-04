@@ -3,6 +3,8 @@ import axios from "axios";
 import Header from '../Header';
 import "./payment.css"
 import ModalPay from "./modalPay";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
 
 class Payment extends Component {
     constructor(props) {
@@ -26,17 +28,13 @@ class Payment extends Component {
             search: "",
         };
     }
-
-    onClickkakao = () => {
-
-    }
     componentDidMount = () => {
-        // axios.post("http://3.36.218.192:5000/alert", {
-        //     type: 4
-        // }).then((res) => {
-        // }).catch((err) => {
-        //     console.log(err)
-        // })
+        axios.post("http://3.36.218.192:5000/alert", {
+            type: 4
+        }).then((res) => {
+        }).catch((err) => {
+            console.log(err)
+        })
 
         axios.post("http://3.36.218.192:5000/getPayment", {
         }).then((res) => {
@@ -181,6 +179,8 @@ class Payment extends Component {
         }
     }
 
+    
+
     render() {
         let login = window.localStorage.getItem("login");
         console.log(this.state)
@@ -188,7 +188,15 @@ class Payment extends Component {
             <>
                 <section id="payment">
                     <Header list={8} />
-                    <div style={{ width: "100%", justifyContent: "space-between", height: "60px", paddingTop: "80px" }}>
+                    <ReactHTMLTableToExcel
+                        id="tableToExcelBtn"
+                        className="download-table-xls-button"
+                        table="paymentdata"
+                        filename="결제 내역"
+                        sheet="tableSheet"
+                        buttonText="엑셀 다운로드"
+                    />
+                        <div style={{ width: "100%", justifyContent: "space-between", height: "60px", paddingTop: "80px" }}>
                         <span className="table_title">결제 내역</span>
                         <span >
                             <img onClick={this.handleInputSearch} className="payment_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
@@ -243,7 +251,7 @@ class Payment extends Component {
                     {
                         this.state.showdata ?
                             <div>
-                                <table>
+                                <table id="paymentdata">
                                     <thead>
                                         <tr>
                                             <th>상품</th>
@@ -266,7 +274,7 @@ class Payment extends Component {
                                                 <td style={{ width: "96px" }}>{e.Manager.name}</td>
                                                 <td style={{ width: "96px" }}>{e.User.name}</td>
                                                 <td style={{ width: "96px" }}>{e.User.login_id}</td>
-                                                <td style={{ width: "96px" }}>{e.pay_total}원</td>
+                                                <td style={{ width: "96px" }}>{Number(e.pay_total)}</td>
                                                 <td style={{ width: "116px" }}>{e.pay_time.slice(2, 8)} {e.pay_time.slice(8, 12)}</td>
                                                 <td style={{ width: "116px" }}>{e.surgery_date ? e.surgery_date.slice(2, e.surgery_date.length) : null}</td>
                                                 <td style={{ width: "96px" }}>{e.state}</td>
