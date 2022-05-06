@@ -30,9 +30,11 @@ class Newuser extends Component {
                         if (res.data[i].UserId && obj[url].user.indexOf(res.data[i].UserId) === -1) {
                             if (arr.indexOf(res.data[i].UserId) === -1) {
                                 arr.push(res.data[i].UserId)
+                                obj[url].user.push(res.data[i].UserId)
                                 obj[url].num++;
                                 obj[url].new++;
                             } else {
+                                obj[url].user.push(res.data[i].UserId)
                                 obj[url].num++;
                             }
                         }
@@ -65,9 +67,11 @@ class Newuser extends Component {
                             if (res.data[i].id && obj[url].user.indexOf(res.data[i].id) === -1) {
                                 if (arr.indexOf(res.data[i].id) === -1) {
                                     arr.push(res.data[i].id)
+                                    obj[url].user.push(res.data[i].id)
                                     obj[url].num++;
                                     obj[url].new++;
                                 } else {
+                                    obj[url].user.push(res.data[i].id)
                                     obj[url].num++;
                                 }
                             }
