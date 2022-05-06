@@ -58,7 +58,7 @@ class Search extends Component {
                 endDate: this.state.enddate + " 23:59:59"
             }).then((res) => {
                 if (res.data) {
-                    let obj = this.state.obj
+                    let obj = {}
                     for (let i = 0; i < res.data.length; i++) {
                         let funnel = res.data[i].funnel.split('skeyword=')[1]
                         let url = ""

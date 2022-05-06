@@ -7,6 +7,7 @@ import Boardtotal from "./Boardtotal";
 import Datetodal from "./Datetotal";
 import Designertotal from "./Designertotal";
 import Newuser from "./Newuser";
+import Linkpage from "./Linkpage";
 
 
 class Statistics extends Component {
@@ -24,6 +25,7 @@ class Statistics extends Component {
     return (
       <section id="Sboard">
           <Header list={7} />
+          <div style={{cursor: "pointer"}} onClick={this.onClicklist(8)}>유입 링크 통계</div>
           <div style={{cursor: "pointer"}} onClick={this.onClicklist(7)}>유입 통계</div>
           <div style={{cursor: "pointer"}} onClick={this.onClicklist(6)}>프로필 전체 통계</div>
           <div style={{cursor: "pointer"}} onClick={this.onClicklist(5)}>날짜별 전체 통계</div>
@@ -42,8 +44,10 @@ class Statistics extends Component {
           this.state.list === 5 ?
           <Datetodal />:
           this.state.list === 6 ?
-          <Designertotal />:
-          <Newuser /> }
+          <Designertotal /> :
+          this.state.list === 7 ?
+          <Newuser />:
+          <Linkpage /> }
       </section>
     )
   }
