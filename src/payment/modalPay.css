@@ -1,86 +1,498 @@
 .Signup_modalBody {
     z-index: 150;  
     position: fixed;
-    display: flex;
+    display:flex;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
-    background: #000000D9; 
+    background: rgba(0,0,0,0.6);
     overflow-y: scroll;
     -ms-overflow-style: none;
 }
 
 .Signup_modalBody::-webkit-scrollbar{ display:none; }
 
-
 .modalclick {
 
     z-index: 150;  
     transition: opacity 0.4s ease-in-out;
     position: fixed;
-    display: flex;
-    top: 0;
     right: 0;
     bottom: 0;
-    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: transparent;
     z-index: 0;
 }
 
-.Signup_modalInner {
-    max-width: 720px;
-    width: 100%;
-    margin: auto;
-    color: #333333;
-    font: 500 17px "Noto Sans";
+
+.modal_inner_total{
+    margin: 42px auto 40px auto;
     z-index: 1;
-    padding: 20px 12px 52px 12px;
-    min-height: 100vh;
-    background-color: #ffffff;
-}
-.payment_modal_request{
-    margin-bottom: 12px;
-}
-.payment_modal_request_title {
-    font: 700 20px "Noto Sans";
-    padding: 15px;
-}
-.payment_modal_refund_title{
-    padding: 12px;
-    font: 700 18px "Noto Sans";
-}
-.payment_modal_request_content{
-    font: 500 16px "Noto Sans";
-    padding: 15px;
-    width: 93%;
+    display: flex;
 }
 
-.payment_modal_request_content pre {
-    white-space: pre-wrap;
-    word-break: break-all;
+.Signup_modalInner {
+    max-width: 1020px;
+    width: 1020px;
+    overflow:scroll;
+    z-index: 1;
+
+    background: #F5F5F5;
+    border-radius: 8px;
+}
+
+.close_btn {
+    z-index: 150;  
+    transition: opacity 0.4s ease-in-out;
+    background-color: transparent;
+    z-index: 0;
+
+    /* position: absolute; */
+    width: 16px;
+    height: 16px;
+
+    cursor: pointer;
+}
+
+.payment_modal_text{
+    background-color: #FFFFFF;
+    border-radius: 8px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
     line-height: 150%;
+    color: #333333;
+
+    padding: 8px 10px 9px 8px;
+}
+
+.payment_modal_title{
+    font: 700 20px "Noto Sans";
+    margin: 0px 0 20px 0;
+    /* padding: 15px; */
+}
+
+#modalPay table{
+    width: 940px;
+    border-spacing: 0px 12px;
+}
+
+#modalPay table>thead>tr>th{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    color: #9C9C9C;
+    text-align: left;
+    padding: 0 0 11px 0;
+}
+
+#modalPay table>thead>tr>th:first-child{
+    padding: 0 0 11px 20px;
+}
+
+#modalPay td{
+    background: #FFFFFF;
+    height: 72px;
+}
+
+#modalPay td:first-child{
+    border-radius: 8px 0px 0px 8px;
+    padding: 0 0 0 20px;
+}
+
+#modalPay td:last-child{
+    border-radius: 0px 8px 8px 0px;
+}
+
+.payment_modal_little_title{
+    font: 700 14px "Noto Sans";
+    color: #9C9C9C;
+    margin: 0px 0px 10px 10px;
+}
+
+.payment_modal_date{
+    display: flex;
+    background: #FFFFFF;
+    border-radius: 8px;
+    white-space: nowrap;
+    /* width: 234px; */
+    height: 38px;
+    padding: 0 12px 0 0 ;
+
+    justify-content: left;
+    align-items: center;
+}
+
+.payment_modal_date_type{
+    width: 26px;
+    height: 21px;
+    margin: 0 0 0 12px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #333333;
+}
+.payment_modal_date_data{
+    margin: 0 0 0 8px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+    color: #0BA754;
+}
+
+.payment_modal_info{
+    margin-bottom: 12px;
+    display:flex;
+    flex-direction: column;
+    margin: 40px;
+}
+
+.payment_modal_info td:first-child{
+    width: 440px;
+}
+.payment_modal_info td{
+    width: 120px;
+}
+
+
+
+
+.payment_modal_reserve{
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 40px 40px 40px;
+}
+
+.payment_modal_reserve_info{
+    display: flex;
+}
+
+.payment_modal_reserve_date{
+    background: #FFFFFF;
+    border-radius: 8px;
+    border: 0px;
+    width: 111px;
+    height: 38px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #333333;
+
+    text-align: center;
+}
+
+.payment_modal_reserve_date::-webkit-calendar-picker-indicator {
+    /* background-image: url('https://cdn1.iconfinder.com/data/icons/arrows-vol-1-4/24/dropdown_arrow-512.png');  */
+    background: url('../../public../../public/image/test/arrow.svg') no-repeat;
+    margin: 7px 3px 0 0;
+  }
+
+.payment_modal_reserve_hours{
+    background: #FFFFFF;
+    border-radius: 8px;
+    border: 0px;
+    width: 78px;
+    height: 38px;
+    margin: 0 0 0 8px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+
+    color: #333333;
+    text-align: center;
+}
+.payment_modal_reserve_hours::-webkit-datetime-edit-ampm-field {
+    display: none;
+}
+
+.payment_modal_reserve_hours::-webkit-calendar-picker-indicator {
+    /* background-image: url('https://cdn1.iconfinder.com/data/icons/arrows-vol-1-4/24/dropdown_arrow-512.png');  */
+    background: url('../../public/image/test/arrow.svg') no-repeat;
+    margin: 8px 3px 0 0;
+}
+
+.payment_modal_reserve_btn{
+    width: 76px;
+    height: 38px;
+    margin: 0 0 0 8px;
+
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+
+    color: #333333;
+    cursor: pointer;
+}
+
+.payment_modal_reserve_confirm{
+    margin: 0 0 0 40px;
+}
+
+
+
+
+
+
+.payment_modal_refund{
+    margin: 0 40px 40px 40px;
+}
+
+
+.payment_modal_refund_request{
+    display: flex;
+    margin: 0 0 17px 0;
+}
+
+button.payment_modal_refund_rate_btn {
+    width: 61px;
+    height: 38px;
+
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    box-sizing: border-box;
+    border-radius: 8px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #333333;
+}
+
+button.payment_modal_refund_rate_btn:nth-child(2) {
+    margin: 0 0 0 8px;
+    cursor: pointer;
+    width: 54px;
+}
+
+.payment_modal_refund_manual{
+    margin: 0 0 0 20px;
+}
+
+.payment_modal_refund_manual_input {
+    width: 96px;
+    height: 38px;
+
+    background: #FFFFFF;
+    border-radius: 8px !important;
+    border: 0;
+    text-align: center;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333333;
+}
+
+.payment_modal_refund_manual_input::placeholder {
+    color: #DDDDDD;
+  }
+
+  .payment_modal_refund_manual_btn {
+    width: 76px;
+    height: 38px;
+    margin: 0 0 0 8px;
+
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+
+    color: #333333;
+    cursor: pointer;
+}
+
+.payment_modal_refund_data{
+    display: flex;
+    /* height: 100% */
+    /* vertical-align: middle; */
+    /* justify-content: center; */
+}
+
+.payment_modal_refund_request_time{
+
+}
+
+.payment_modal_refund_reason{
+    margin: 0 0 0 40px;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.payment_modal_coupon{
+    margin: 0 40px 40px 40px;
+}
+
+.payment_modal_coupon table {
+    width: 960px;
+}
+
+.payment_modal_coupon td:first-child {
+    width: 100px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #333333;
+}
+
+.payment_modal_coupon td:nth-child(2) {
+    width: 460px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #333333;
+}
+
+#modalPay .payment_modal_coupon th:nth-child(3){
+    padding: 0 0 11px 75px;
+}
+
+.payment_modal_coupon_state {
+    display:flex;
+    margin: 16px 50px 16px 75px;
+}
+
+.payment_modal_coupon_unused, .payment_modal_coupon_used{
+    width: 68px;
+    height: 29px;
+    border-radius: 8px;
+    margin: 4px 0 0 0;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+
+    line-height: 29px;
+    text-align : center;
+}
+
+.payment_modal_coupon_unused{
+    background: #D8F6E6;
+    color: #0BA754;
+}
+
+.payment_modal_coupon_used{
+    background: #DDDDDD;
+    color: #9C9C9C;
+}
+
+.payment_modal_coupon_state_change_btn{
+    line-height: 40px;
+    text-align : center;
+
+    width: 115px;
+    height: 40px;
+    margin: 0 0 0 52px;
+
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #333333;
+    cursor: pointer;
+}
+
+
+
+.payment_modal_user_info{
+    margin: 0 40px 40px 40px;
+}
+
+.payment_modal_user_info td:first-child {
+    width: 100px;
+}
+
+.payment_modal_user_info td:nth-child(2) {
+    width: 120px;
+}
+
+.payment_modal_user_info td:nth-child(3) {
+    width: 120px;
+}
+
+.payment_modal_user_info td:nth-child(4) {
+    width: 160px;
+}
+
+.payment_modal_user_info td:nth-child(5) {
+    width: 420px;
+}
+
+.payment_modal_request{
+    margin: 0 40px 40px 40px;
+}
+
+.payment_modal_request_content{
+    display:flex;
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.payment_modal_request_text {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333333;
 }
 
 .payment_modal_request_img{
-    width: 93%;
-    padding: 15px;
-
+    white-space: nowrap;
+    margin-left: auto; 
 }
-.payment_modal_request_img img {
-    width: 100%;
-    margin-bottom: 15px;
-
-}
-
-.payment_modal_request table {
-    margin-top: 0px;
-}
-
-.payment_modal_request th, .payment_modal_request td {
-    padding: 12px;
-    text-align: left;
+.payment_modal_request_img>img {
+    border-radius: 8px;
+    margin: 0 0 0 10px;
+    width: 80px;
+    height: 80px;
 }
