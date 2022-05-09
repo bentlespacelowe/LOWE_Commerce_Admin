@@ -227,7 +227,7 @@ class Payment extends Component {
     var tbody = target.parentNode;
     var trs = tbody.getElementsByTagName('tr');
     for (var i = 0; i < trs.length; i++) {
-      if (trs[i] != target) {
+      if (trs[i] !== target) {
         trs[i].style.backgroundColor = orgBColor;
         trs[i].style.color = orgTColor;
       } else {

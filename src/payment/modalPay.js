@@ -1,7 +1,7 @@
 import React from 'react';
 import './modalPay.css';
 import axios from 'axios';
-import NumberFormat from 'react-number-format';
+// import NumberFormat from 'react-number-format';
 
 class modalPay extends React.Component {
   constructor(props) {
@@ -125,7 +125,7 @@ class modalPay extends React.Component {
   };
 
   render() {
-    let login = window.localStorage.getItem('login');
+    // let login = window.localStorage.getItem('login');
     const { open, data } = this.props;
     console.log(this.props);
     return (
