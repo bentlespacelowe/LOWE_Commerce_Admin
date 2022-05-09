@@ -112,7 +112,7 @@ class create extends Component {
       const formData = new FormData();
       formData.append('file', img);
       await axios
-        .post('http://54.180.117.244:5000/addImg', formData, {
+        .post('https://server.lowehair.kr/addImg', formData, {
           headers: {
             'content-type': 'multipart/form-data',
           },
@@ -143,7 +143,7 @@ class create extends Component {
     }
 
     await axios
-      .patch('http://54.180.117.244:5000/manager', {
+      .patch('https://server.lowehair.kr/manager', {
         id: this.props.location.state.e.id,
         normal_id: this.state.name,
         password: '1234',
@@ -178,7 +178,7 @@ class create extends Component {
     let hashtags = this.state.hashtags;
     let surgeries = this.state.surgeries;
     await axios
-      .post('http://54.180.117.244:5000/joinManager', {
+      .post('https://server.lowehair.kr/joinManager', {
         normal_id: this.state.name,
         password: '1234',
         name: this.state.name,

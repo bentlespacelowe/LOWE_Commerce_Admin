@@ -21,13 +21,13 @@ class Board extends Component {
   componentDidMount = () => {
     let id = window.location.pathname.split('/')[2];
     axios
-      .post('http://54.180.117.244:5000/getBoardDetail', {
+      .post('https://server.lowehair.kr/getBoardDetail', {
         id: id,
       })
       .then((res) => {
         this.setState({ data: res.data });
         axios
-          .post('http://54.180.117.244:5000/getDesignerName', {
+          .post('https://server.lowehair.kr/getDesignerName', {
             name: res.data.board.designer_name,
           })
           .then((res) => {

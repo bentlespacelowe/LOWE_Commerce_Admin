@@ -37,7 +37,7 @@ class create extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://54.180.117.244:5000/getDesignerList', {})
+      .post('https://server.lowehair.kr/getDesignerList', {})
       .then((res) => {
         this.setState({ data: res.data });
         console.log(res.data);
@@ -145,7 +145,7 @@ class create extends Component {
       const formData = new FormData();
       formData.append('file', img);
       await axios
-        .post('http://54.180.117.244:5000/addImg', formData, {
+        .post('https://server.lowehair.kr/addImg', formData, {
           headers: {
             'content-type': 'multipart/form-data',
           },
@@ -180,7 +180,7 @@ class create extends Component {
       },
     ];
     axios
-      .post('http://54.180.117.244:5000/createBoard', {
+      .post('https://server.lowehair.kr/createBoard', {
         phone: '0',
         designer_name: this.state.designer_name,
         store: this.state.store,
@@ -224,7 +224,7 @@ class create extends Component {
       },
     ];
     await axios
-      .post('http://54.180.117.244:5000/updateBoard', {
+      .post('https://server.lowehair.kr/updateBoard', {
         id: Number(window.location.pathname.split('/')[3]),
         phone: '0',
         designer_name: this.state.designer_name,

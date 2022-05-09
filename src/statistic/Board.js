@@ -32,7 +32,7 @@ class Board extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://54.180.117.244:5000/getClick', {
+      .post('https://server.lowehair.kr/getClick', {
         type: 1,
       })
       .then((res) => {
@@ -76,7 +76,7 @@ class Board extends Component {
     if (enddate - startdate === 0) {
       this.setState({ obj: {}, data: [], datedata: [] });
       axios
-        .post('http://54.180.117.244:5000/getClick', {
+        .post('https://server.lowehair.kr/getClick', {
           type: 1,
           startDate: this.state.startdate + ' 00:00:00',
           endDate: this.state.enddate + ' 23:59:59',
@@ -119,7 +119,7 @@ class Board extends Component {
       this.setState({ obj: {}, data: [], datedata: [] });
       for (let i = 0; i <= (enddate - startdate) / 86400000; i++) {
         await axios
-          .post('http://54.180.117.244:5000/getClick', {
+          .post('https://server.lowehair.kr/getClick', {
             type: 1,
             startDate: date + ' 00:00:00',
             endDate: date + ' 23:59:59',

@@ -496,3 +496,7 @@ button.payment_modal_refund_rate_btn:nth-child(2) {
     width: 80px;
     height: 80px;
 }
+
+.payment_modal_request_img>img:hover {
+    transform: scale(1.5);
+}

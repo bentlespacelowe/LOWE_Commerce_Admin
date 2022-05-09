@@ -16,7 +16,7 @@ class coupon extends Component {
   };
   onClickUse = (e) => () => {
     axios
-      .post('http://54.180.117.244:5000/updateCoupon', {
+      .post('https://server.lowehair.kr/updateCoupon', {
         id: e.id,
         text: this.state.text,
       })
@@ -28,7 +28,7 @@ class coupon extends Component {
   onClickDelete = (e) => () => {
     console.log(e.id);
     axios
-      .post('http://54.180.117.244:5000/removeCoupon', {
+      .post('https://server.lowehair.kr/removeCoupon', {
         id: e.id,
       })
       .then((res) => {

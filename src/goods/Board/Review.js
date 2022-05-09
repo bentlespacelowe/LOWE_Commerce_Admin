@@ -16,7 +16,7 @@ class Review extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://54.180.117.244:5000/getOneUser', {
+      .post('https://server.lowehair.kr/getOneUser', {
         id: this.props.data.UserId,
       })
       .then((res) => {
