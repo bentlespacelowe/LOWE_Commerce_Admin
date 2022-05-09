@@ -19,7 +19,7 @@ class modalPay extends React.Component {
 
   handleReservation = () => {
     axios
-      .post('http://54.180.117.244:5000/updatePayment', {
+      .post('https://server.lowehair.kr/updatePayment', {
         id: Number(this.props.mypayment.id), //결제 DB 상의 id 값
         state: '시술', //원하시는 형태로 결제 상태 입력해주세요!
       })
@@ -32,48 +32,50 @@ class modalPay extends React.Component {
   };
 
   handleRefundAll = (value) => (e) => {
-    e.preventDefault();
-    let price = 0;
-    if (value === '100') {
-      price = this.props.data.pay_total;
-    } else if (value === '90') {
-      price = Math.round(Number(this.props.data.pay_total) * 0.9);
-    } else {
-      price = this.state.refundprice;
-      if (this.state.refundprice > Number(this.props.data.pay_total)) {
-        window.alert('결제 금액보다 금액이 큽니다');
+    if (window.confirm(`${value}% 환불을 하시겠습니까?`)) {
+      e.preventDefault();
+      let price = 0;
+      if (value === '100') {
+        price = this.props.data.pay_total;
+      } else if (value === '90') {
+        price = Math.round(Number(this.props.data.pay_total) * 0.9);
+      } else {
+        price = this.state.refundprice;
+        if (this.state.refundprice > Number(this.props.data.pay_total)) {
+          window.alert('결제 금액보다 금액이 큽니다');
+        }
       }
+      console.log(price);
+      axios
+        .post('https://server.lowehair.kr/payAuth', {
+          PCD_PAYCANCEL_FLAG: 'Y',
+        })
+        .then((authResult) => {
+          axios
+            .post('https://server.lowehair.kr/refund', {
+              ...authResult.data,
+              payment_id: this.props.data.id, //Payment 아이디!
+              PCD_REFUND_TOTAL: price, //결제취소 요청금액 (기존 결제금액보다 적은 금액 입력 시 부분취소로 진행)
+              state: '환불완료',
+            })
+            .then((refundResult) => {
+              if (refundResult.data.PCD_PAY_MSG === '승인취소성공') {
+                window.alert('환불 성공!!');
+              } else {
+                window.alert('환불 실패 ');
+              }
+            });
+        })
+        .catch((err) => {
+          console.error(err);
+          window.alert(err);
+        });
     }
-    console.log(price);
-    axios
-      .post('http://54.180.117.244:5000/payAuth', {
-        PCD_PAYCANCEL_FLAG: 'Y',
-      })
-      .then((authResult) => {
-        axios
-          .post('http://54.180.117.244:5000/refund', {
-            ...authResult.data,
-            payment_id: this.props.data.id, //Payment 아이디!
-            PCD_REFUND_TOTAL: price, //결제취소 요청금액 (기존 결제금액보다 적은 금액 입력 시 부분취소로 진행)
-            state: '환불완료',
-          })
-          .then((refundResult) => {
-            if (refundResult.data.PCD_PAY_MSG === '승인취소성공') {
-              window.alert('환불 성공!!');
-            } else {
-              window.alert('환불 실패 ');
-            }
-          });
-      })
-      .catch((err) => {
-        console.error(err);
-        window.alert(err);
-      });
   };
 
   onClickkakao = () => {
     axios
-      .post('http://54.180.117.244:5000/alert', {
+      .post('https://server.lowehair.kr/alert', {
         type: 3,
         PaymentId: this.props.data.id,
       })
@@ -92,7 +94,7 @@ class modalPay extends React.Component {
     console.log(surgery_date);
     if (date && time) {
       axios
-        .post('http://54.180.117.244:5000/updatePayment', {
+        .post('https://server.lowehair.kr/updatePayment', {
           id: Number(this.props.data.id), //결제 DB 상의 id 값
           state: '예약확정', //원하시는 형태로 결제 상태 입력해주세요!
           surgery_date: surgery_date,
@@ -114,7 +116,7 @@ class modalPay extends React.Component {
 
   onClickUse = (e) => () => {
     axios
-      .post('http://54.180.117.244:5000/updateCoupon', {
+      .post('https://server.lowehair.kr/updateCoupon', {
         id: e.id,
       })
       .then((res) => {
@@ -169,19 +171,8 @@ class modalPay extends React.Component {
                     <div className='payment_modal_reserve_setting'>
                       <div className='payment_modal_little_title'>예약 설정</div>
                       <div className='payment_modal_reserve_time'>
-                        <input
-                          className='payment_modal_reserve_date'
-                          type='date'
-                          value={data.surgery_date ? data.surgery_date.split(' ')[0] : null}
-                          onChange={this.handleInputValue('surgery_date')}
-                        />
-                        <input
-                          className='payment_modal_reserve_hours'
-                          type='time'
-                          step='900'
-                          value={data.surgery_date ? data.surgery_date.split(' ')[1] : null}
-                          onChange={this.handleInputValue('surgery_time')}
-                        />
+                        <input className='payment_modal_reserve_date' type='date' onChange={this.handleInputValue('surgery_date')} />
+                        <input className='payment_modal_reserve_hours' type='time' step='900' onChange={this.handleInputValue('surgery_time')} />
                         <button className='payment_modal_reserve_btn' onClick={this.handleMakeres}>
                           예약수정
                         </button>
@@ -206,7 +197,8 @@ class modalPay extends React.Component {
                   <div className='payment_modal_refund_request'>
                     <div className='payment_modal_refund_rate'>
                       <div className='payment_modal_little_title'>환불율</div>
-                      {data.state === '환불대기' ? (
+                      {
+                        // data.state === '환불대기' ? (
                         <div className='payment_modal_refund_rate_btn'>
                           <button className='payment_modal_refund_rate_btn' onClick={this.handleRefundAll('100')}>
                             100%
@@ -215,28 +207,29 @@ class modalPay extends React.Component {
                             90%
                           </button>
                         </div>
-                      ) : (
-                        <div className='payment_modal_refund_rate_btn'>
-                          <button
-                            className='payment_modal_refund_rate_btn'
-                            onClick={() => {
-                              window.alert('환불대기 중인 결제내역이 아닙니다');
-                            }}
-                          >
-                            100%
-                          </button>
-                          <button
-                            className='payment_modal_refund_rate_btn'
-                            onClick={() => {
-                              window.alert('환불대기 중인 결제내역이 아닙니다');
-                            }}
-                          >
-                            90%
-                          </button>
-                        </div>
-                      )}
+                        // ) : (
+                        //   <div className='payment_modal_refund_rate_btn'>
+                        //     <button
+                        //       className='payment_modal_refund_rate_btn'
+                        //       onClick={() => {
+                        //         window.alert('환불대기 중인 결제내역이 아닙니다');
+                        //       }}
+                        //     >
+                        //       100%
+                        //     </button>
+                        //     <button
+                        //       className='payment_modal_refund_rate_btn'
+                        //       onClick={() => {
+                        //         window.alert('환불대기 중인 결제내역이 아닙니다');
+                        //       }}
+                        //     >
+                        //       90%
+                        //     </button>
+                        //   </div>
+                        // )
+                      }
                     </div>
-                    <div className='payment_modal_refund_manual'>
+                    {/* <div className='payment_modal_refund_manual'>
                       <div className='payment_modal_little_title'>환불금액</div>
                       <NumberFormat
                         className='payment_modal_refund_manual_input'
@@ -248,7 +241,7 @@ class modalPay extends React.Component {
                       <button className='payment_modal_refund_manual_btn' onClick={this.handleRefundAll('')}>
                         환불하기
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                   {data.cancel_reason || data.request_refund_time ? (
                     <div className='payment_modal_refund_data'>

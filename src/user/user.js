@@ -20,7 +20,7 @@ class user extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://54.180.117.244:5000/getAllUser', {})
+      .post('https://server.lowehair.kr/getAllUser', {})
       .then((res) => {
         this.setState({ data: res.data, alldata: res.data });
         console.log(res.data);
@@ -55,13 +55,13 @@ class user extends Component {
 
   openModalDetail = (e) => () => {
     axios
-      .post('http://54.180.117.244:5000/getClick', {
+      .post('https://server.lowehair.kr/getClick', {
         UserId: e.id,
       })
       .then((res) => {
         this.setState({ detail: res.data });
         axios
-          .post('http://54.180.117.244:5000/getPayment', {
+          .post('https://server.lowehair.kr/getPayment', {
             UserId: e.id,
           })
           .then((res) => {

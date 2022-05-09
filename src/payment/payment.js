@@ -55,7 +55,7 @@ class Payment extends Component {
   onClickkakao = () => {};
   componentDidMount = () => {
     axios
-      .post('http://54.180.117.244:5000/alert', {
+      .post('https://server.lowehair.kr/alert', {
         type: 4,
       })
       .then((res) => {})
@@ -63,7 +63,7 @@ class Payment extends Component {
         console.log(err);
       });
 
-    axios.post('http://54.180.117.244:5000/getPayment', {}).then((res) => {
+    axios.post('https://server.lowehair.kr/getPayment', {}).then((res) => {
       let date = [];
       let pay = [];
       let done = [];
@@ -149,7 +149,7 @@ class Payment extends Component {
       data: [],
     });
     axios
-      .post('http://54.180.117.244:5000/getPayment', {
+      .post('https://server.lowehair.kr/getPayment', {
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
       })
@@ -281,14 +281,16 @@ class Payment extends Component {
                 <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
                   검색하기
                 </button>
-                <ReactHTMLTableToExcel
-                  id='tableToExcelBtn'
-                  className='download-table-xls-button'
-                  table='paymentdata'
-                  filename='결제 내역'
-                  sheet='tableSheet'
-                  buttonText='결제내역 다운로드'
-                />
+                {login === 'admin' ? (
+                  <ReactHTMLTableToExcel
+                    id='tableToExcelBtn'
+                    className='download-table-xls-button'
+                    table='paymentdata'
+                    filename='결제 내역'
+                    sheet='tableSheet'
+                    buttonText='결제내역 다운로드'
+                  />
+                ) : null}
               </div>
             </div>
             {login === 'admin' ? (

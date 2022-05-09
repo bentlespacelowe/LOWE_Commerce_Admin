@@ -21,7 +21,7 @@ class coupon extends Component {
   }
 
   componentDidMount = () => {
-    axios.post('http://54.180.117.244:5000/getAllCoupon', {}).then((res) => {
+    axios.post('https://server.lowehair.kr/getAllCoupon', {}).then((res) => {
       let data = res.data;
       let exp = [];
       let all = [];
@@ -58,7 +58,7 @@ class coupon extends Component {
   };
   onClickUse = (e) => () => {
     axios
-      .post('http://54.180.117.244:5000/updateCoupon', {
+      .post('https://server.lowehair.kr/updateCoupon', {
         id: e.id,
         text: this.state.text,
       })
@@ -70,7 +70,7 @@ class coupon extends Component {
   onClickDelete = (e) => () => {
     console.log(e.id);
     axios
-      .post('http://54.180.117.244:5000/removeCoupon', {
+      .post('https://server.lowehair.kr/removeCoupon', {
         id: e.id,
       })
       .then((res) => {
@@ -83,7 +83,7 @@ class coupon extends Component {
 
   onClickkakao = () => {
     axios
-      .post('http://54.180.117.244:5000/alert', {
+      .post('https://server.lowehair.kr/alert', {
         type: 1,
       })
       .then((res) => {

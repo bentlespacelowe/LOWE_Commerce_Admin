@@ -16,7 +16,7 @@ class designers extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://54.180.117.244:5000/getDesignerList', {})
+      .post('https://server.lowehair.kr/getDesignerList', {})
       .then((res) => {
         this.setState({ data: res.data, alldata: res.data });
         console.log(res.data);

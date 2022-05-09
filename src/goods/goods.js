@@ -15,7 +15,7 @@ class goods extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://54.180.117.244:5000/getAllBoard', {})
+      .post('https://server.lowehair.kr/getAllBoard', {})
       .then((res) => {
         this.setState({ data: res.data });
         console.log(res.data);
@@ -27,7 +27,7 @@ class goods extends Component {
 
   handledeleteBoard = (e) => () => {
     axios
-      .post('http://54.180.117.244:5000/removeBoard', {
+      .post('https://server.lowehair.kr/removeBoard', {
         id: e,
       })
       .then((res) => {
@@ -42,7 +42,7 @@ class goods extends Component {
     let keyword = this.state.search;
     console.log(keyword);
     axios
-      .post('http://54.180.117.244:5000/search', {
+      .post('https://server.lowehair.kr/search', {
         keyword: keyword,
       })
       .then((res) => {
@@ -63,7 +63,7 @@ class goods extends Component {
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value, result: false });
     axios
-      .post('http://54.180.117.244:5000/search', {
+      .post('https://server.lowehair.kr/search', {
         keyword: e.target.value,
       })
       .then((res) => {
