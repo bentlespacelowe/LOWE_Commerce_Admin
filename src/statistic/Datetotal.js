@@ -18,7 +18,7 @@ class Datetodal extends Component {
 
   componentDidMount = () => {
     axios
-      .post('https://server.lowehair.kr/getClick', {
+      .post('http://15.165.44.114:5000/getClick', {
         type: 2,
       })
       .then((res) => {
@@ -39,7 +39,7 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('https://server.lowehair.kr/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 1,
           })
           .then((res) => {
@@ -56,7 +56,7 @@ class Datetodal extends Component {
           });
       })
       .then(() => {
-        axios.post('https://server.lowehair.kr/getPayment', {}).then((res) => {
+        axios.post('http://15.165.44.114:5000/getPayment', {}).then((res) => {
           if (res.data) {
             let obj = this.state.obj;
             for (let i = 0; i < res.data.length; i++) {
@@ -76,7 +76,7 @@ class Datetodal extends Component {
 
   onClickgetClick = () => {
     axios
-      .post('https://server.lowehair.kr/getClick', {
+      .post('http://15.165.44.114:5000/getClick', {
         type: 2,
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
@@ -89,7 +89,7 @@ class Datetodal extends Component {
             if (obj[url]) {
               obj[url].num++;
             } else {
-              obj[url] = { num: 1, id: res.data[i].BoardId, name: res.data[i].Board.name, click: 0, paymentdata: [] };
+              obj[url] = { num: 1, click: 0, paymentdata: [], paytotal: 0 };
             }
           }
           this.setState({ data: res.data, number: res.data.length, showdata: obj, obj: obj });
@@ -99,7 +99,7 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('https://server.lowehair.kr/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 1,
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',
@@ -119,11 +119,12 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('https://server.lowehair.kr/getPayment', {
+          .post('http://15.165.44.114:5000/getPayment', {
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',
           })
           .then((res) => {
+              console.log(res.data)
             if (res.data) {
               let obj = this.state.obj;
               for (let i = 0; i < res.data.length; i++) {
@@ -132,6 +133,7 @@ class Datetodal extends Component {
                   let data = obj[url].paymentdata;
                   data.push(res.data[i]);
                   obj[url].paymentdata = data;
+                  obj[url].paytotal = obj[url].paytotal + Number(res.data[i].pay_amount);
                 }
               }
               this.setState({ data: res.data, number: res.data.length, showdata: obj, obj: obj });
@@ -154,13 +156,12 @@ class Datetodal extends Component {
       <>
         <div className='table_title'>날짜별 전체 통계</div>
         <div>
-          <input type='date' onChange={this.handleInputValue('startdate')} />~
-          <input type='date' onChange={this.handleInputValue('enddate')} />
-          <span>
-            <button onClick={this.onClickgetClick} style={{ marginLeft: '10px', width: '50px' }} type='submit'>
-              검색
+            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
+            {' ~ '}
+            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
+            <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
+                검색하기
             </button>
-          </span>
         </div>
         {this.state.showdata ? (
           <table>

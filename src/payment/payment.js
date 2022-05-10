@@ -54,8 +54,21 @@ class Payment extends Component {
 
   onClickkakao = () => {};
   componentDidMount = () => {
+    const btn = document.querySelector('.btn-select');
+    const list = document.querySelector('.list-member');
+    btn.addEventListener('click', () => {
+      list.classList.toggle('on');
+      btn.classList.toggle('on');
+    });
+    list.addEventListener('click', (event) => {
+      if (event.target.nodeName === 'BUTTON') {
+        btn.innerText = event.target.innerText;
+        list.classList.remove('on');
+      }
+    });
+
     axios
-      .post('https://server.lowehair.kr/alert', {
+      .post('http://15.165.44.114:5000/alert', {
         type: 4,
       })
       .then((res) => {})
@@ -63,7 +76,7 @@ class Payment extends Component {
         console.log(err);
       });
 
-    axios.post('https://server.lowehair.kr/getPayment', {}).then((res) => {
+    axios.post('http://15.165.44.114:5000/getPayment', {}).then((res) => {
       let date = [];
       let pay = [];
       let done = [];
@@ -124,18 +137,18 @@ class Payment extends Component {
   };
 
   selectFilter = (v) => (e) => {
-    this.setState({ filter: e.target.value });
-    if (Number(e.target.value) === 0) {
+    this.setState({ filter: v });
+    if (Number(v) === 0) {
       this.setState({ showdata: this.state.alldata });
-    } else if (Number(e.target.value) === 1) {
+    } else if (Number(v) === 1) {
       this.setState({ showdata: this.state.pay });
-    } else if (Number(e.target.value) === 2) {
+    } else if (Number(v) === 2) {
       this.setState({ showdata: this.state.date });
-    } else if (Number(e.target.value) === 3) {
+    } else if (Number(v) === 3) {
       this.setState({ showdata: this.state.done });
-    } else if (Number(e.target.value) === 4) {
+    } else if (Number(v) === 4) {
       this.setState({ showdata: this.state.waiting });
-    } else if (Number(e.target.value) === 5) {
+    } else if (Number(v) === 5) {
       this.setState({ showdata: this.state.refund });
     }
   };
@@ -149,7 +162,7 @@ class Payment extends Component {
       data: [],
     });
     axios
-      .post('https://server.lowehair.kr/getPayment', {
+      .post('http://15.165.44.114:5000/getPayment', {
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
       })
@@ -237,9 +250,25 @@ class Payment extends Component {
     } // endfor i
   };
 
+  stateFilter = () => {
+    const btn = document.querySelector('.btn-select');
+    const list = document.querySelector('.list-member');
+    btn.addEventListener('click', () => {
+      list.classList.toggle('on');
+      btn.classList.toggle('on');
+    });
+    list.addEventListener('click', (event) => {
+      if (event.target.nodeName === 'BUTTON') {
+        btn.innerText = event.target.innerText;
+        list.classList.remove('on');
+      }
+    });
+  };
+
   render() {
     let login = window.localStorage.getItem('login');
     console.log(this.state);
+
     return (
       <>
         <section id='payment'>
@@ -264,14 +293,49 @@ class Payment extends Component {
             </div>
             <div className='payment_filter'>
               <div>
-                <select className='payment_filter_state' onChange={this.selectFilter('filter')}>
-                  <option value={0}>전체보기</option>
-                  <option value={1}>결제완료</option>
-                  <option value={2}>예약확정</option>
-                  <option value={3}>시술완료</option>
-                  <option value={4}>환불대기</option>
-                  <option value={5}>환불완료</option>
-                </select>
+                {/* <select className='payment_filter_state' onChange={this.selectFilter('filter')}>
+                  <option className='payment_filter_state_option' value={0}>
+                    전체보기
+                  </option>
+                  <option className='payment_filter_state_option' value={1}>
+                    결제완료
+                  </option>
+                  <option className='payment_filter_state_option' value={2}>
+                    예약확정
+                  </option>
+                  <option className='payment_filter_state_option' value={3}>
+                    시술완료
+                  </option>
+                  <option className='payment_filter_state_option' value={4}>
+                    환불대기
+                  </option>
+                  <option className='payment_filter_state_option' value={5}>
+                    환불완료
+                  </option>
+                </select> */}
+                <article className='cont-select'>
+                  <button className='btn-select'>전체보기</button>
+                  <ul className='list-member'>
+                    <li>
+                      <button type='button' onClick={this.selectFilter(0)}>전체보기</button>
+                    </li>
+                    <li>
+                      <button type='button' onClick={this.selectFilter(1)}>결제완료</button>
+                    </li>
+                    <li>
+                      <button type='button' onClick={this.selectFilter(2)}>예약확정</button>
+                    </li>
+                    <li>
+                      <button type='button' onClick={this.selectFilter(3)}>시술완료</button>
+                    </li>
+                    <li>
+                      <button type='button' onClick={this.selectFilter(4)}>환불대기</button>
+                    </li>
+                    <li>
+                      <button type='button' onClick={this.selectFilter(5)}>환불완료</button>
+                    </li>
+                  </ul>
+                </article>
               </div>
 
               <div>

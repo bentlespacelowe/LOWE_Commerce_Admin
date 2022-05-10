@@ -25,14 +25,16 @@ class Statistics extends Component {
     return (
       <section id="Sboard">
           <Header list={7} />
-          <div style={{cursor: "pointer"}} onClick={this.onClicklist(8)}>유입 링크 통계</div>
-          <div style={{cursor: "pointer"}} onClick={this.onClicklist(7)}>유입 통계</div>
-          <div style={{cursor: "pointer"}} onClick={this.onClicklist(6)}>프로필 전체 통계</div>
-          <div style={{cursor: "pointer"}} onClick={this.onClicklist(5)}>날짜별 전체 통계</div>
-          <div style={{cursor: "pointer"}} onClick={this.onClicklist(4)}>상품 전체 통계</div>
-          <div style={{cursor: "pointer"}} onClick={this.onClicklist(3)}>검색어 통계</div>
-          <div style={{cursor: "pointer"}} onClick={this.onClicklist(2)}>페이지 유입</div>
-          <div style={{cursor: "pointer"}} onClick={this.onClicklist(1)}>예약하기 클릭 수</div>
+          <div className="Sboard_filter" >
+            <div style={{cursor: "pointer"}} onClick={this.onClicklist(8)}>유입 링크 통계</div>
+            <div style={{cursor: "pointer"}} onClick={this.onClicklist(7)}>유입 통계</div>
+            <div style={{cursor: "pointer"}} onClick={this.onClicklist(6)}>프로필 전체 통계</div>
+            <div style={{cursor: "pointer"}} onClick={this.onClicklist(5)}>날짜별 전체 통계</div>
+            <div style={{cursor: "pointer"}} onClick={this.onClicklist(4)}>상품 전체 통계</div>
+            <div style={{cursor: "pointer"}} onClick={this.onClicklist(3)}>검색어 통계</div>
+            <div style={{cursor: "pointer"}} onClick={this.onClicklist(2)}>페이지 유입</div>
+            <div style={{cursor: "pointer"}} onClick={this.onClicklist(1)}>예약하기 클릭 수</div>
+          </div>
           { this.state.list === 1 ?
           <Board /> :
           this.state.list === 2 ?

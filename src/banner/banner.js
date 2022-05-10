@@ -14,7 +14,7 @@ class banner extends Component {
 
   componentDidMount = () => {
     axios
-      .post('https://server.lowehair.kr/getAllBanner', {})
+      .post('http://15.165.44.114:5000/getAllBanner', {})
       .then((res) => {
         this.setState({ data: res.data });
       })
@@ -25,7 +25,7 @@ class banner extends Component {
 
   removeBanner = (e) => () => {
     axios
-      .post('https://server.lowehair.kr/removeBanner', {
+      .post('http://15.165.44.114:5000/removeBanner', {
         id: e,
       })
       .then((res) => {

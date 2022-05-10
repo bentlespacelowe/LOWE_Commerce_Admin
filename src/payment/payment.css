@@ -97,6 +97,7 @@
     margin: 0 40px 0 0;
     background-color: #ffffff;
     border-radius: 8px;
+    z-index: 50;
 }
 
 .payment_filter_state {
@@ -138,19 +139,183 @@ select::-ms-expand {
     display: none;
 }
 
+
+/* @keyframes 배경 {
+    0% {
+        background-color: rgb(226, 226, 226);
+    }
+    20% {
+        background-color: rgb(156, 156, 156);   
+    }
+    40% {
+        background-color: rgb(124, 124, 124);
+    }
+    60% {
+        background-color: rgb(134, 134, 134);
+    }
+    80% {
+        background-color: rgb(209, 209, 209);
+    }
+} */
+/* @keyframes 아티클 {
+    0% {
+        box-shadow: 0 0 1px 1px #fff;
+    }
+    30% {
+        box-shadow: 0 0 7px 5px #fff;
+      
+    }
+    50% {
+        box-shadow: 0 0 10px 7px #fff;
+    }
+    80% {
+        box-shadow: 0 0 7px 5px #fff;
+    }
+    100% {
+        box-shadow: 0 0 4px 2px #fff;
+    }
+    
+} */
+
+article {     
+z-index: 1;
+width: 96px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;    
+/* background-color: #fff; */
+border-radius: 8px;
+left: 100%;
+z-index: 100;
+/* transform: translateX(-50%); */
+/* animation: 아티클 2.5s linear infinite; */
+}
+
+
+.btn-select {
+font-size: 12px;
+width: 96px;
+height:38px;
+border-radius: 8px;
+border: 1px solid #c4c4c4;
+background-color: #FFF;
+text-align: left;
+box-sizing: border-box;
+padding: 8px 0px 8px 12px;
+background: url('../../public/image/test/arrow.svg') no-repeat ;
+background-position: 73px 50%;
+transition: all .3s;
+
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 150%;
+
+color: #333333;
+}
+.btn-select:hover {
+  cursor: pointer;
+
+}
+.btn-select.on {
+background: url('../../public/image/test/arrow.svg') no-repeat ;
+background-position: 73px 50%;
+
+}
+
+.list-member {
+display: none;   
+overflow: hidden;
+transition: all .3s;
+box-sizing: border-box;
+}
+
+
+.list-member.on {
+display: block;
+width: 96px;
+/* height: 100%; */
+border: 1px solid #c4c4c4;
+border-radius: 8px;
+margin-top: 4px;
+background-color: #ffffff;
+}
+
+
+
+.btn-select:active+.list-member {
+display: block;
+
+/* border: 1px solid #c4c4c4; */
+}
+
+.list-member li {
+position: relative;
+width: 100%;
+height: 38px;
+border-radius: 8px;
+/* padding: 12px 0 12px 18px ; */
+box-sizing: border-box;
+
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 150%;
+
+}
+
+
+.list-member li:hover {
+
+background: #F9FBFA;
+}
+
+.list-member li button {
+position: absolute;
+top: 50%;
+left: 0;
+transform: translateY(-50%);
+left: 14px;
+width: 160px;
+text-align: left;
+font-size: 14px;  
+display: inline-block;        
+border: none;
+background-color:#fff;
+padding: 0;
+transition:all 0.1s;
+
+}
+.list-member li button:hover { 
+color: #0BA754;
+cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+/* background: url('../../public/image/test/arrow.svg') no-repeat ; */
+
+
 .Payment_filter_date {
-    width: 109px;
+    width: 97px;
     height: 38px;
-    text-align: center;
+    padding-left: 12px;
 
     background: #FFFFFF;
     border-radius: 8px;
     border: 1px solid #ffffff;
 
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
+    font: 400 14px 'Noto Sans';
 
     color: #333333;
 }
@@ -162,20 +327,21 @@ select::-ms-expand {
 .Payment_filter_date::-webkit-calendar-picker-indicator {
     background: url('../../public/image/test/arrow.svg') no-repeat;
     margin-top: 7px;
+    position: absolute;
+    width: 85px;
+    transform: rotate(180deg) scaleY(-1);
 }
 
 .payment_filter_search_btn {
-    width: 76px;
+    width: 80px;
     height: 38px;
     margin: 0 0 0 12px;
 
     background: #FFFFFF;
     border: 1px solid #DDDDDD;
-    box-sizing: border-box;
     border-radius: 8px;
 
     font-family: 'Noto Sans';
-    font-style: normal;
     font-weight: 700;
     font-size: 14px;
     color: #333333;
@@ -245,9 +411,7 @@ select::-ms-expand {
 
 .Payment_data_content_type {
     width: 56px;
-height: 21px;
-left: 822px;
-top: 323px;
+    height: 21px;
 
 font-family: 'Noto Sans';
 font-style: normal;
@@ -519,13 +683,3 @@ div.detail_button {
     color: #333333;
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
-

@@ -20,7 +20,7 @@ class Sboardlist extends Component {
 
   componentDidMount = () => {
     axios
-      .post('https://server.lowehair.kr/getClick', {
+      .post('http://15.165.44.114:5000/getClick', {
         type: 2,
       })
       .then((res) => {
@@ -54,7 +54,7 @@ class Sboardlist extends Component {
     if (enddate - startdate === 0) {
       this.setState({ obj: {}, data: [], datedata: [] });
       axios
-        .post('https://server.lowehair.kr/getClick', {
+        .post('http://15.165.44.114:5000/getClick', {
           type: 2,
           startDate: this.state.startdate + ' 00:00:00',
           endDate: this.state.enddate + ' 23:59:59',
@@ -85,7 +85,7 @@ class Sboardlist extends Component {
       this.setState({ obj: {}, data: [], datedata: [] });
       for (let i = 0; i <= (enddate - startdate) / 86400000; i++) {
         await axios
-          .post('https://server.lowehair.kr/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 2,
             startDate: date + ' 00:00:00',
             endDate: date + ' 23:59:59',
@@ -146,13 +146,12 @@ class Sboardlist extends Component {
       <>
         <div className='table_title'>페이지 유입</div>
         <div>
-          <input type='date' onChange={this.handleInputValue('startdate')} />~
-          <input type='date' onChange={this.handleInputValue('enddate')} />
-          <span>
-            <button onClick={this.onClickgetClick} style={{ marginLeft: '10px', width: '50px' }} type='submit'>
-              검색
+            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
+            {' ~ '}
+            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
+            <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
+                검색하기
             </button>
-          </span>
         </div>
         {this.state.datedata.length ? (
           <div>
