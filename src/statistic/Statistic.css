@@ -8,13 +8,68 @@
 .table_title {
     font: 700 30px "Noto Sans";
     line-height:  60px;
+    margin-bottom: 50px;
 }
-
+.Sboard_filter{
+    display: flex;
+    justify-content: space-around;
+}
+.Sboard_filter > div {
+    font: 700 16px "Noto Sans";
+    padding: 10px;
+    margin-top: 30px;
+    border: 1px solid #333333;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
 #Sboard table {
-    margin-top: 25px;
+    border-spacing: 0px 12px;
+    margin-top: 20px;
 }
 
 #Sboard th, #Sboard td {
     padding: 12px;
     text-align: left;
 }
+
+#Sboard th{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #9C9C9C;
+    text-align: left;
+    padding: 0 0 12px 0;
+}
+
+#Sboard td {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    width: 120px;
+    background: #FFFFFF;
+    margin: 0 0 12px 0;
+    height: 45px;
+
+}
+
+
+#Sboard td:first-child, #Sboard th:first-child{
+    border-radius: 8px 0px 0px 8px;
+    width: 50px;
+    text-align: center;
+}
+
+#Sboard td:last-child{
+    border-radius: 0px 8px 8px 0px;
+}
+
+#Sboard td:first-child{
+    border-radius: 8px 0px 0px 8px;
+}
+#Sboard td:last-child{
+    border-radius: 0px 8px 8px 0px;
+    margin: 0 0 0 32px;
+} 

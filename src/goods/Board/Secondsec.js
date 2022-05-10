@@ -19,7 +19,7 @@ class Secondsec extends Component {
     console.log(id, user);
     if (id && user) {
       axios
-        .post('https://server.lowehair.kr/boardLikeChk', {
+        .post('http://15.165.44.114:5000/boardLikeChk', {
           user: user,
           id: id,
         })
@@ -33,7 +33,7 @@ class Secondsec extends Component {
     }
 
     axios
-      .post('https://server.lowehair.kr/getAllBanner', {})
+      .post('http://15.165.44.114:5000/getAllBanner', {})
       .then((res) => {
         if (res.data.length) {
           for (let i = 0; i < res.data.length; i++) {
@@ -62,7 +62,7 @@ class Secondsec extends Component {
     }
     if (id && user) {
       await axios
-        .post('https://server.lowehair.kr/boardLikeUpdate', {
+        .post('http://15.165.44.114:5000/boardLikeUpdate', {
           id: id,
           user: user,
           heart: like,

@@ -14,7 +14,7 @@ class review extends Component {
   }
 
   componentDidMount = () => {
-    axios.post('https://server.lowehair.kr/getAllReview', {}).then((res) => {
+    axios.post('http://15.165.44.114:5000/getAllReview', {}).then((res) => {
       this.setState({ data: res.data, number: res.data.length });
     });
   };
