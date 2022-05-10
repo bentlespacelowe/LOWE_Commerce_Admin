@@ -346,10 +346,6 @@ button.payment_modal_refund_rate_btn:nth-child(2) {
     /* justify-content: center; */
 }
 
-.payment_modal_refund_request_time{
-
-}
-
 .payment_modal_refund_reason{
     margin: 0 0 0 40px;
     width: 100%;

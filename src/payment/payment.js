@@ -360,7 +360,10 @@ class Payment extends Component {
                       // <tr key={i} className={e.state === '환불완료' ? ' text-deco' : ' none-deco'} onClick={this.highlightTR(e, '#c9cc99', 'cc3333')}>
                       // <tr style={this.state.isActive === i ? style : { background: 'white' }} key={i} onClick={() => this.toggleActive(i)}>
                       <tr
-                        className={this.state.isActive === i ? 'payment_table_click' : e.state === '환불완료' ? ' text-deco' : ' none-deco'}
+                        className={
+                          (e.state === '환불완료' ? ' text-deco' : e.refund_total ? ' partial_refund' : ' none-deco') +
+                          (this.state.isActive === i ? ' payment_table_click' : '')
+                        }
                         key={i}
                         onClick={() => this.toggleActive(i)}
                       >
@@ -374,7 +377,7 @@ class Payment extends Component {
                         <td className='table_td_designer'>{e.Manager.name}</td>
                         <td className='table_td_user_name'>{e.User.name}</td>
                         <td className='table_td_user_id'>{e.User.login_id}</td>
-                        <td className='table_td_price'>{e.pay_total.comma()}</td>
+                        <td className='table_td_price'>{e.refund_total ? e.pay_total - e.refund_total : e.pay_total.comma()}</td>
                         <td className='table_td_discount_price'>
                           {e.event_price ? (e.event_price - Number(e.pay_amount)).comma() : (e.list_price - Number(e.pay_amount)).comma()}
                         </td>

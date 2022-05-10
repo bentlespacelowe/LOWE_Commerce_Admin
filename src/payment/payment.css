@@ -417,20 +417,46 @@ tr.text-deco:hover > td:last-child{
     border-right: 1px solid #0BA754;
 }
 
-.payment_table_click {
-    background: #ffffff;
+tr.partial_refund {
+    background: #dedede;
+}
+tr.partial_refund > td{
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+}
+tr.partial_refund > td:first-child{
+    border-left: 1px solid #dedede;
+}
+tr.partial_refund > td:last-child{
+    border-right: 1px solid #dedede;
 }
 
-.payment_table_click td{
+tr.partial_refund:hover {
+}
+tr.partial_refund:hover > td{
     border-top: 1px solid #0BA754;
     border-bottom: 1px solid #0BA754;
 }
-
-.payment_table_click td:first-child{
+tr.partial_refund:hover > td:first-child{
     border-left: 1px solid #0BA754;
 }
-.payment_table_click td:last-child{
+tr.partial_refund:hover > td:last-child{
     border-right: 1px solid #0BA754;
+}
+
+.payment_table_click {
+}
+
+.payment_table_click td{
+    border-top: 1px solid #0BA754 !important;
+    border-bottom: 1px solid #0BA754 !important;
+}
+
+.payment_table_click td:first-child{
+    border-left: 1px solid #0BA754 !important;
+}
+.payment_table_click td:last-child{
+    border-right: 1px solid #0BA754 !important;
 }
 
 div.pay_statement {
