@@ -35,10 +35,13 @@ class modalPay extends React.Component {
     if (window.confirm(`${value}% 환불을 하시겠습니까?`)) {
       e.preventDefault();
       let price = 0;
+      let stateResult = '';
       if (value === '100') {
         price = this.props.data.pay_total;
+        stateResult = '환불완료';
       } else if (value === '90') {
         price = Math.round(Number(this.props.data.pay_total) * 0.9);
+        stateResult = '시술완료';
       } else {
         price = this.state.refundprice;
         if (this.state.refundprice > Number(this.props.data.pay_total)) {
@@ -56,10 +59,18 @@ class modalPay extends React.Component {
               ...authResult.data,
               payment_id: this.props.data.id, //Payment 아이디!
               PCD_REFUND_TOTAL: price, //결제취소 요청금액 (기존 결제금액보다 적은 금액 입력 시 부분취소로 진행)
-              state: '환불완료',
+              state: stateResult,
             })
             .then((refundResult) => {
               if (refundResult.data.PCD_PAY_MSG === '승인취소성공') {
+                axios
+                  .post('https://server.lowehair.kr/alert', {
+                    type: 5,
+                    PaymentId: this.props.data.id,
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
                 window.alert('환불 성공!!');
               } else {
                 window.alert('환불 실패 ');
@@ -70,6 +81,7 @@ class modalPay extends React.Component {
           console.error(err);
           window.alert(err);
         });
+    } else {
     }
   };
 
