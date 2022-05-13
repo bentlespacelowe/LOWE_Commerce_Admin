@@ -440,6 +440,7 @@ class create extends Component {
           <option value='홍대입구역점'>홍대입구역점</option>
           <option value='신촌점'>신촌점</option>
           <option value='합정점'>합정점</option>
+          <option value='L7홍대점'>L7홍대점</option>
         </select>
         <div>
           <span>상품이름 </span>
