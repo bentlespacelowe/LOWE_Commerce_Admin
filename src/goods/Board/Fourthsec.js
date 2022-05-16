@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import './Fourthsec.css';
 import Recommand from './Recommand';
@@ -15,7 +15,7 @@ class Fourthsec extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://15.165.44.114:5000/getBoardRelation', {
+      .post('http://localhost:5000/getBoardRelation', {
         category: this.props.data.board.category,
         gender: this.props.data.board.gender,
         limit: 10,

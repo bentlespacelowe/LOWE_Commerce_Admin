@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import './Statistic.css';
 import moment from 'moment';
@@ -20,7 +20,7 @@ class Search extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://15.165.44.114:5000/getClick', {
+      .post('http://localhost:5000/getClick', {
         type: 3,
       })
       .then((res) => {
@@ -54,7 +54,7 @@ class Search extends Component {
     if (enddate - startdate === 0) {
       this.setState({ obj: {}, data: [], datedata: [] });
       axios
-        .post('http://15.165.44.114:5000/getClick', {
+        .post('http://localhost:5000/getClick', {
           type: 3,
           startDate: this.state.startdate + ' 00:00:00',
           endDate: this.state.enddate + ' 23:59:59',
@@ -85,7 +85,7 @@ class Search extends Component {
       this.setState({ obj: {}, data: [], datedata: [] });
       for (let i = 0; i <= (enddate - startdate) / 86400000; i++) {
         await axios
-          .post('http://15.165.44.114:5000/getClick', {
+          .post('http://localhost:5000/getClick', {
             type: 3,
             startDate: date + ' 00:00:00',
             endDate: date + ' 23:59:59',
@@ -127,7 +127,9 @@ class Search extends Component {
               this.setState({ showdata: '', datedata: datedata });
             }
           });
-        date = moment(date).add(1, 'days').format('YYYY-MM-DD');
+        date = moment(date)
+          .add(1, 'days')
+          .format('YYYY-MM-DD');
         this.setState({ nextdate: date });
       }
     }
@@ -146,12 +148,12 @@ class Search extends Component {
       <>
         <div className='table_title'>페이지 유입</div>
         <div>
-            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
-            {' ~ '}
-            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
-            <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
-                검색하기
-            </button>
+          <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
+          {' ~ '}
+          <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
+          <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
+            검색하기
+          </button>
         </div>
         {this.state.datedata.length ? (
           <div>

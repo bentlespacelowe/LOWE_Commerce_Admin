@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Header from '../Header';
 
@@ -14,7 +14,7 @@ class review extends Component {
   }
 
   componentDidMount = () => {
-    axios.post('http://15.165.44.114:5000/getAllReview', {}).then((res) => {
+    axios.post('http://localhost:5000/getAllReview', {}).then((res) => {
       this.setState({ data: res.data, number: res.data.length });
     });
   };

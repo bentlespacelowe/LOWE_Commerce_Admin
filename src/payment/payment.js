@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import axios from 'axios';
 import './payment.css';
 import ModalPay from './modalPay';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+// import { ko } from 'date-fns/esm/locale';
+// import moment from 'moment';
+import Header from '../Header';
 
 class Payment extends Component {
   constructor(props) {
@@ -52,6 +57,28 @@ class Payment extends Component {
     }
   };
 
+  // https://reactdatepicker.com/ 참고
+  ExampleCustomInput = ({ value, onClick }) => (
+    <button class='example-custom-input' onClick={onClick}>
+      {' '}
+      {value}{' '}
+    </button>
+  );
+  // 월/일
+  getFormattedDate = (date) => {
+    const month = date.toLocaleDateString('ko-KR', { month: 'long' });
+    const day = date.toLocaleDateString('ko-KR', { day: 'numeric' });
+    return `${month.substr(0, month.length - 1)}/${day.substr(0, day.length - 1)}`;
+  };
+  // 요일 반환
+  getDayName = (date) => {
+    return date.toLocaleDateString('ko-KR', { weekday: 'long' }).substr(0, 1);
+  };
+  // 날짜 비교시 년 월 일까지만 비교하게끔
+  createDate = (date) => {
+    return new Date(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0));
+  };
+
   onClickkakao = () => {};
   componentDidMount = () => {
     const btn = document.querySelector('.btn-select');
@@ -68,7 +95,7 @@ class Payment extends Component {
     });
 
     axios
-      .post('http://15.165.44.114:5000/alert', {
+      .post('http://localhost:5000/alert', {
         type: 4,
       })
       .then((res) => {})
@@ -76,7 +103,7 @@ class Payment extends Component {
         console.log(err);
       });
 
-    axios.post('http://15.165.44.114:5000/getPayment', {}).then((res) => {
+    axios.post('http://localhost:5000/getPayment', {}).then((res) => {
       let date = [];
       let pay = [];
       let done = [];
@@ -162,7 +189,7 @@ class Payment extends Component {
       data: [],
     });
     axios
-      .post('http://15.165.44.114:5000/getPayment', {
+      .post('http://localhost:5000/getPayment', {
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
       })
@@ -271,6 +298,7 @@ class Payment extends Component {
 
     return (
       <>
+        <Header list={8} />
         <section id='payment'>
           <div id='payment_content'>
             <div className='payment_title_search'>
@@ -293,46 +321,38 @@ class Payment extends Component {
             </div>
             <div className='payment_filter'>
               <div>
-                {/* <select className='payment_filter_state' onChange={this.selectFilter('filter')}>
-                  <option className='payment_filter_state_option' value={0}>
-                    전체보기
-                  </option>
-                  <option className='payment_filter_state_option' value={1}>
-                    결제완료
-                  </option>
-                  <option className='payment_filter_state_option' value={2}>
-                    예약확정
-                  </option>
-                  <option className='payment_filter_state_option' value={3}>
-                    시술완료
-                  </option>
-                  <option className='payment_filter_state_option' value={4}>
-                    환불대기
-                  </option>
-                  <option className='payment_filter_state_option' value={5}>
-                    환불완료
-                  </option>
-                </select> */}
-                <article className='cont-select'>
-                  <button className='btn-select'>전체보기</button>
-                  <ul className='list-member'>
+                <article class='cont-select'>
+                  <button class='btn-select'>전체보기</button>
+                  <ul class='list-member'>
                     <li>
-                      <button type='button' onClick={this.selectFilter(0)}>전체보기</button>
+                      <button type='button' onClick={this.selectFilter(0)}>
+                        전체보기
+                      </button>
                     </li>
                     <li>
-                      <button type='button' onClick={this.selectFilter(1)}>결제완료</button>
+                      <button type='button' onClick={this.selectFilter(1)}>
+                        결제완료
+                      </button>
                     </li>
                     <li>
-                      <button type='button' onClick={this.selectFilter(2)}>예약확정</button>
+                      <button type='button' onClick={this.selectFilter(2)}>
+                        예약확정
+                      </button>
                     </li>
                     <li>
-                      <button type='button' onClick={this.selectFilter(3)}>시술완료</button>
+                      <button type='button' onClick={this.selectFilter(3)}>
+                        시술완료
+                      </button>
                     </li>
                     <li>
-                      <button type='button' onClick={this.selectFilter(4)}>환불대기</button>
+                      <button type='button' onClick={this.selectFilter(4)}>
+                        환불대기
+                      </button>
                     </li>
                     <li>
-                      <button type='button' onClick={this.selectFilter(5)}>환불완료</button>
+                      <button type='button' onClick={this.selectFilter(5)}>
+                        환불완료
+                      </button>
                     </li>
                   </ul>
                 </article>
@@ -420,64 +440,81 @@ class Payment extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.showdata.map((e, i) => (
-                      // <tr key={i} className={e.state === '환불완료' ? ' text-deco' : ' none-deco'} onClick={this.highlightTR(e, '#c9cc99', 'cc3333')}>
-                      // <tr style={this.state.isActive === i ? style : { background: 'white' }} key={i} onClick={() => this.toggleActive(i)}>
-                      <tr
-                        className={
-                          (e.state === '환불완료' ? ' text-deco' : e.refund_total ? ' partial_refund' : ' none-deco') +
-                          (this.state.isActive === i ? ' payment_table_click' : '')
-                        }
-                        key={i}
-                        onClick={() => this.toggleActive(i)}
-                      >
-                        <td className='table_td_no'>{e.Board.id === 122 || !e.Board.id ? null : e.Board.id}</td>
-                        <td className={'table_td_goods'}>
-                          <div>
-                            <a href={e.BoardId === 122 ? null : 'https://lowehair.kr/board/' + e.BoardId}>{e.pay_goods}</a>
-                          </div>
-                        </td>
-                        <td className='table_td_store'>{e.Manager.store}</td>
-                        <td className='table_td_designer'>{e.Manager.name}</td>
-                        <td className='table_td_user_name'>{e.User.name}</td>
-                        <td className='table_td_user_id'>{e.User.login_id}</td>
-                        <td className='table_td_price'>{e.refund_total ? e.pay_total - e.refund_total : e.pay_total.comma()}</td>
-                        <td className='table_td_discount_price'>
-                          {e.event_price ? (e.event_price - Number(e.pay_amount)).comma() : (e.list_price - Number(e.pay_amount)).comma()}
-                        </td>
-                        <td className='table_td_total_price'>{e.event_price ? e.event_price.comma() : e.list_price.comma()}</td>
-                        <td className='table_td_payment_time'>
-                          {e.pay_time.slice(2, 4)}-{e.pay_time.slice(4, 6)}-{e.pay_time.slice(6, 8)} {e.pay_time.slice(8, 10)}:
-                          {e.pay_time.slice(10, 12)}
-                        </td>
-                        <td className='table_td_reserve_time'>{e.surgery_date ? e.surgery_date.slice(2, e.surgery_date.length) : null}</td>
-                        <td className='table_td_state'>
-                          <div
-                            className={
-                              'pay_statement ' +
-                              (e.state === '결제완료'
-                                ? 'payment_complete'
-                                : e.state === '예약확정'
-                                ? 'reserve_complete'
-                                : e.state === '시술완료'
-                                ? 'surgery_complete'
-                                : e.state === '환불대기'
-                                ? 'refund_request'
-                                : e.state === '환불완료'
-                                ? 'refund_complete'
-                                : null)
-                            }
-                          >
-                            {e.state}{' '}
-                          </div>
-                        </td>
-                        <td>
-                          <div className='detail_button' onClick={this.openModalDetail(e)}>
-                            상세보기
-                          </div>
-                        </td>
+                    {this.state.showdata.length ? (
+                      this.state.showdata.map((e, i) => (
+                        // <tr key={i} className={e.state === '환불완료' ? ' text-deco' : ' none-deco'} onClick={this.highlightTR(e, '#c9cc99', 'cc3333')}>
+                        // <tr style={this.state.isActive === i ? style : { background: 'white' }} key={i} onClick={() => this.toggleActive(i)}>
+                        <tr
+                          className={
+                            (e.state === '환불완료' ? ' text-deco' : e.refund_total ? ' partial_refund' : ' none-deco') +
+                            (this.state.isActive === i ? ' payment_table_click' : '')
+                          }
+                          key={i}
+                          onClick={() => this.toggleActive(i)}
+                        >
+                          <td className='table_td_no'>{e.Board.id === 122 || !e.Board.id ? null : e.Board.id}</td>
+                          <td className={'table_td_goods'}>
+                            <div>
+                              <a href={e.BoardId === 122 ? null : 'https://lowehair.kr/board/' + e.BoardId}>{e.pay_goods}</a>
+                            </div>
+                          </td>
+                          <td className='table_td_store'>{e.Manager.store}</td>
+                          <td className='table_td_designer'>{e.Manager.name}</td>
+                          <td className='table_td_user_name'>{e.User.name}</td>
+                          <td className='table_td_user_id'>{e.User.login_id}</td>
+                          <td className='table_td_price'>{e.refund_total ? e.pay_total - e.refund_total : e.pay_total.comma()}</td>
+                          <td className='table_td_discount_price'>
+                            {e.event_price ? (e.event_price - Number(e.pay_amount)).comma() : (e.list_price - Number(e.pay_amount)).comma()}
+                          </td>
+                          <td className='table_td_total_price'>{e.event_price ? e.event_price.comma() : e.list_price.comma()}</td>
+                          <td className='table_td_payment_time'>
+                            {e.pay_time.slice(2, 4)}-{e.pay_time.slice(4, 6)}-{e.pay_time.slice(6, 8)} {e.pay_time.slice(8, 10)}:
+                            {e.pay_time.slice(10, 12)}
+                          </td>
+                          <td className='table_td_reserve_time'>{e.surgery_date ? e.surgery_date.slice(2, e.surgery_date.length) : null}</td>
+                          <td className='table_td_state'>
+                            <div
+                              className={
+                                'pay_statement ' +
+                                (e.state === '결제완료'
+                                  ? 'payment_complete'
+                                  : e.state === '예약확정'
+                                  ? 'reserve_complete'
+                                  : e.state === '시술완료'
+                                  ? 'surgery_complete'
+                                  : e.state === '환불대기'
+                                  ? 'refund_request'
+                                  : e.state === '환불완료'
+                                  ? 'refund_complete'
+                                  : null)
+                              }
+                            >
+                              {e.state}{' '}
+                            </div>
+                          </td>
+                          <td>
+                            <div className='detail_button' onClick={this.openModalDetail(e)}>
+                              상세보기
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr className='none-deco'>
+                        <td className='table_td_no'>-</td>
+                        <td className={'table_td_goods'}></td>
+                        <td className='table_td_store'></td>
+                        <td className='table_td_designer'></td>
+                        <td className='table_td_user_name'></td>
+                        <td className='table_td_user_id'></td>
+                        <td className='table_td_price'></td>
+                        <td className='table_td_discount_price'></td>
+                        <td className='table_td_total_price'></td>
+                        <td className='table_td_payment_time'></td>
+                        <td className='table_td_reserve_time'></td>
+                        <td className='table_td_state'></td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>

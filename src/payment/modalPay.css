@@ -202,7 +202,7 @@
 
 .payment_modal_reserve_date::-webkit-calendar-picker-indicator {
     /* background-image: url('https://cdn1.iconfinder.com/data/icons/arrows-vol-1-4/24/dropdown_arrow-512.png');  */
-    background: url('../../public../../public/image/test/arrow.svg') no-repeat;
+    background: url('/image/test/arrow.svg') no-repeat;
     margin: 7px 3px 0 0;
   }
 
@@ -229,7 +229,7 @@
 
 .payment_modal_reserve_hours::-webkit-calendar-picker-indicator {
     /* background-image: url('https://cdn1.iconfinder.com/data/icons/arrows-vol-1-4/24/dropdown_arrow-512.png');  */
-    background: url('../../public/image/test/arrow.svg') no-repeat;
+    background: url('/image/test/arrow.svg') no-repeat;
     margin: 8px 3px 0 0;
 }
 

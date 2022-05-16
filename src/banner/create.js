@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import './create.css';
 
 class create extends Component {
@@ -49,7 +49,7 @@ class create extends Component {
       const formData = new FormData();
       formData.append('file', img);
       await axios
-        .post('http://15.165.44.114:5000/addImg', formData, {
+        .post('http://localhost:5000/addImg', formData, {
           headers: {
             'content-type': 'multipart/form-data',
           },
@@ -64,7 +64,7 @@ class create extends Component {
 
   handleEditbanner = async () => {
     await axios
-      .post('http://15.165.44.114:5000/updateBanner', {
+      .post('http://localhost:5000/updateBanner', {
         id: this.props.location.state.e.id,
         title: this.state.title,
         content: this.state.content,
@@ -80,7 +80,7 @@ class create extends Component {
 
   handleImgValue = async () => {
     await axios
-      .post('http://15.165.44.114:5000/createBanner', {
+      .post('http://localhost:5000/createBanner', {
         title: this.state.title,
         content: this.state.content,
         type: this.state.type,

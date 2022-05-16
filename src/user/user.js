@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './user.css';
@@ -20,7 +20,7 @@ class user extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://15.165.44.114:5000/getAllUser', {})
+      .post('http://localhost:5000/getAllUser', {})
       .then((res) => {
         this.setState({ data: res.data, alldata: res.data });
         console.log(res.data);
@@ -55,13 +55,13 @@ class user extends Component {
 
   openModalDetail = (e) => () => {
     axios
-      .post('http://15.165.44.114:5000/getClick', {
+      .post('http://localhost:5000/getClick', {
         UserId: e.id,
       })
       .then((res) => {
         this.setState({ detail: res.data });
         axios
-          .post('http://15.165.44.114:5000/getPayment', {
+          .post('http://localhost:5000/getPayment', {
             UserId: e.id,
           })
           .then((res) => {

@@ -119,7 +119,7 @@
 
     color: #333333;
 
-    background: url('../../public/image/test/arrow.svg') no-repeat 95% 50%;
+    background: url('/image/test/arrow.svg') no-repeat 95% 50%;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -177,134 +177,188 @@ select::-ms-expand {
     
 } */
 
-article {     
-z-index: 1;
-width: 96px;
-display: flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;    
-/* background-color: #fff; */
-border-radius: 8px;
-left: 100%;
-z-index: 100;
-/* transform: translateX(-50%); */
-/* animation: 아티클 2.5s linear infinite; */
+#payment article {     
+    z-index: 1;
+    position: absolute;
+    width: 96px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;    
+    border-radius: 8px;
 }
 
-
 .btn-select {
-font-size: 12px;
-width: 96px;
-height:38px;
-border-radius: 8px;
-border: 1px solid #c4c4c4;
-background-color: #FFF;
-text-align: left;
-box-sizing: border-box;
-padding: 8px 0px 8px 12px;
-background: url('../../public/image/test/arrow.svg') no-repeat ;
-background-position: 73px 50%;
-transition: all .3s;
+    font-size: 12px;
+    width: 96px;
+    height:38px;
+    border-radius: 8px;
+    border: 1px solid #ffffff;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 8px 0px 8px 12px;
+    background: url('/image/test/arrow.svg') no-repeat ;
+    background-position: 73px 50%;
+    transition: all .3s;
 
-font-family: 'Noto Sans';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 150%;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
 
-color: #333333;
+    color: #333333;
 }
 .btn-select:hover {
   cursor: pointer;
-
+  border: 1px solid #0BA754;
+  border-radius: 8px;
 }
 .btn-select.on {
-background: url('../../public/image/test/arrow.svg') no-repeat ;
-background-position: 73px 50%;
-
+    background: url('/image/test/arrow.svg') no-repeat ;
+    background-position: 73px 50%;
+    border-radius: 8px;
 }
 
 .list-member {
-display: none;   
-overflow: hidden;
-transition: all .3s;
-box-sizing: border-box;
+    display: none;   
+    overflow: hidden;
+    transition: all .3s;
+    box-sizing: border-box;
+    background: #ffffff;
 }
 
 
 .list-member.on {
-display: block;
-width: 96px;
-/* height: 100%; */
-border: 1px solid #c4c4c4;
-border-radius: 8px;
-margin-top: 4px;
-background-color: #ffffff;
+    display: block;
+    width: 96px;
+    border-radius: 8px;
+    margin-top: 4px;
+    padding: 0 0 8px 0;
 }
 
 
 
 .btn-select:active+.list-member {
-display: block;
-
-/* border: 1px solid #c4c4c4; */
+    display: block;
 }
 
 .list-member li {
-position: relative;
-width: 100%;
-height: 38px;
-border-radius: 8px;
-/* padding: 12px 0 12px 18px ; */
-box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 38px;
+    border-radius: 8px;
+    box-sizing: border-box;
 
-font-family: 'Noto Sans';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 150%;
-
-}
-
-
-.list-member li:hover {
-
-background: #F9FBFA;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
 }
 
 .list-member li button {
-position: absolute;
-top: 50%;
-left: 0;
-transform: translateY(-50%);
-left: 14px;
-width: 160px;
-text-align: left;
-font-size: 14px;  
-display: inline-block;        
-border: none;
-background-color:#fff;
-padding: 0;
-transition:all 0.1s;
-
+    margin: 4px;
+    width: 88px;
+    height: 38px;
+    text-align: left;
+    font-size: 14px;  
+    display: inline-block;        
+    border: none;
+    background-color:#ffffff;
+    padding-left: 8px;
+    transition:all 0.1s;
 }
 .list-member li button:hover { 
-color: #0BA754;
-cursor: pointer;
+    
+    color: #0BA754;
+    cursor: pointer;
+    background: #F9FBFA;
+    border-radius: 8px;
 }
 
 
+.react-datepicker-wrapper {
+    width: 111px !important;
+    height: 38px;
+    background: #FFFFFF;
+    border: 1px solid #ffffff;
+    border-radius: 8px !important;
+}
+
+.react-datepicker__input-container{
+    
+}
+
+.input-datepicker {
+    width: 97px;
+    height: 36px;
+    padding: 0 0 0 12px;
+
+    border: 1px solid #ffffff;
+    border-radius: 8px !important;
+
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #333333;
+
+    background: url('/image/test/arrow.svg') no-repeat;
+    background-position: 90px 50%;
+    cursor: pointer;
+    outline: none;
+}
+
+.input-datepicker::placeholder {
+    padding: 4px;
+
+}
+
+.input-datepicker:hover {
+    border: 1px solid #0BA754;
+}
+
+.date_filter>div{
+    margin: auto 4px;
+}
+
+.react-datepicker-ignore-onclickoutside {}
+
+.react-datepicker {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    color: #000000;
+ } 
+.react-datepicker__current-month { 
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    color: #000000;
+} 
+.react-datepicker__header {
+     padding-top: 6px !important; 
+} 
+.react-datepicker__navigation { 
+    top: 13px !important; 
+} 
+.saturday { color: rgb(0, 0, 255) !important; } 
+.sunday { color: rgb(255, 0, 0) !important; } 
+.react-datepicker__day--disabled { color: #cccccc !important; }
 
 
 
 
 
-
-
-
-/* background: url('../../public/image/test/arrow.svg') no-repeat ; */
-
+/* .date_filter{
+    display: flex;
+    line-height: 38px;
+} */
 
 .Payment_filter_date {
     width: 97px;
@@ -325,7 +379,7 @@ cursor: pointer;
 }
 
 .Payment_filter_date::-webkit-calendar-picker-indicator {
-    background: url('../../public/image/test/arrow.svg') no-repeat;
+    background: url('/image/test/arrow.svg') no-repeat;
     margin-top: 7px;
     position: absolute;
     width: 85px;
@@ -333,15 +387,17 @@ cursor: pointer;
 }
 
 .payment_filter_search_btn {
-    width: 80px;
+    width: 76px;
     height: 38px;
     margin: 0 0 0 12px;
 
     background: #FFFFFF;
     border: 1px solid #DDDDDD;
+    box-sizing: border-box;
     border-radius: 8px;
 
     font-family: 'Noto Sans';
+    font-style: normal;
     font-weight: 700;
     font-size: 14px;
     color: #333333;
@@ -413,17 +469,17 @@ cursor: pointer;
     width: 56px;
     height: 21px;
 
-font-family: 'Noto Sans';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 150%;
-/* identical to box height, or 21px */
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 21px */
 
 
-color: #9C9C9C;
+    color: #9C9C9C;
 
-margin: 4px auto 0 auto;
+    margin: 4px auto 0 auto;
 }
 
 

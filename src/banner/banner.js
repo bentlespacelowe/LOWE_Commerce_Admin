@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './banner.css';
@@ -14,7 +14,7 @@ class banner extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://15.165.44.114:5000/getAllBanner', {})
+      .post('http://localhost:5000/getAllBanner', {})
       .then((res) => {
         this.setState({ data: res.data });
       })
@@ -25,7 +25,7 @@ class banner extends Component {
 
   removeBanner = (e) => () => {
     axios
-      .post('http://15.165.44.114:5000/removeBanner', {
+      .post('http://localhost:5000/removeBanner', {
         id: e,
       })
       .then((res) => {

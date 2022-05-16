@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 class Datetodal extends Component {
@@ -18,7 +18,7 @@ class Datetodal extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://15.165.44.114:5000/getClick', {
+      .post('http://localhost:5000/getClick', {
         type: 2,
       })
       .then((res) => {
@@ -39,7 +39,7 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('http://15.165.44.114:5000/getClick', {
+          .post('http://localhost:5000/getClick', {
             type: 1,
           })
           .then((res) => {
@@ -56,7 +56,7 @@ class Datetodal extends Component {
           });
       })
       .then(() => {
-        axios.post('http://15.165.44.114:5000/getPayment', {}).then((res) => {
+        axios.post('http://localhost:5000/getPayment', {}).then((res) => {
           if (res.data) {
             let obj = this.state.obj;
             for (let i = 0; i < res.data.length; i++) {
@@ -76,7 +76,7 @@ class Datetodal extends Component {
 
   onClickgetClick = () => {
     axios
-      .post('http://15.165.44.114:5000/getClick', {
+      .post('http://localhost:5000/getClick', {
         type: 2,
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
@@ -99,7 +99,7 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('http://15.165.44.114:5000/getClick', {
+          .post('http://localhost:5000/getClick', {
             type: 1,
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',
@@ -119,12 +119,12 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('http://15.165.44.114:5000/getPayment', {
+          .post('http://localhost:5000/getPayment', {
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',
           })
           .then((res) => {
-              console.log(res.data)
+            console.log(res.data);
             if (res.data) {
               let obj = this.state.obj;
               for (let i = 0; i < res.data.length; i++) {
@@ -156,12 +156,12 @@ class Datetodal extends Component {
       <>
         <div className='table_title'>날짜별 전체 통계</div>
         <div>
-            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
-            {' ~ '}
-            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
-            <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
-                검색하기
-            </button>
+          <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
+          {' ~ '}
+          <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
+          <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
+            검색하기
+          </button>
         </div>
         {this.state.showdata ? (
           <table>

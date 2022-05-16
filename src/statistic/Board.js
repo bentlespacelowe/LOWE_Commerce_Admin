@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import './Statistic.css';
 import moment from 'moment';
@@ -171,7 +171,9 @@ class Board extends Component {
               this.setState({ showdata: '', datedata: datedata });
             }
           });
-        date = moment(date).add(1, 'days').format('YYYY-MM-DD');
+        date = moment(date)
+          .add(1, 'days')
+          .format('YYYY-MM-DD');
         this.setState({ nextdate: date });
       }
     }
@@ -190,12 +192,12 @@ class Board extends Component {
       <>
         <div className='table_title'>예약하기 클릭 수</div>
         <div>
-            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
-            {' ~ '}
-            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
-            <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
-                검색하기
-            </button>
+          <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
+          {' ~ '}
+          <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
+          <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
+            검색하기
+          </button>
         </div>
         {this.state.datedata.length ? (
           <div>

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Home from './Mainpage';
 import Banner from './banner/banner';
@@ -30,7 +30,7 @@ class App extends Component {
         <Switch>
           {window.localStorage.getItem('login') === 'admin' ? (
             <>
-              <Header list={8} />
+              {/* <Header list={8} /> */}
               <Route path='/banners' component={Banner} />
               <Route path='/banner/edit/:id' component={BannerCreate} />
               <Route path='/banner/create/:id' component={BannerCreate} />
@@ -51,7 +51,7 @@ class App extends Component {
             </>
           ) : window.localStorage.getItem('login') === 'store' ? (
             <>
-              <Header list={8} />
+              {/* <Header list={8} /> */}
               <Route path='/users' component={User} />
               <Route path='/user/coupon/:id' component={Coupon} />
               <Route path='/payments' component={Payment} />

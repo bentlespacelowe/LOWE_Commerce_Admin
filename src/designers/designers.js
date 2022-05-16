@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './designers.css';
@@ -16,7 +16,7 @@ class designers extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://15.165.44.114:5000/getDesignerList', {})
+      .post('http://localhost:5000/getDesignerList', {})
       .then((res) => {
         this.setState({ data: res.data, alldata: res.data });
         console.log(res.data);

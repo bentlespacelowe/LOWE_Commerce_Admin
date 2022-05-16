@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 class Linkpage extends Component {
@@ -16,7 +16,7 @@ class Linkpage extends Component {
   }
 
   componentDidMount = () => {
-    axios.post('http://15.165.44.114:5000/getClick', {}).then((res) => {
+    axios.post('http://localhost:5000/getClick', {}).then((res) => {
       if (res.data) {
         let obj = this.state.obj;
         for (let i = 0; i < res.data.length; i++) {
@@ -63,7 +63,7 @@ class Linkpage extends Component {
   };
   onClickgetClick = () => {
     axios
-      .post('http://15.165.44.114:5000/getClick', {
+      .post('http://localhost:5000/getClick', {
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
       })
@@ -125,12 +125,12 @@ class Linkpage extends Component {
       <>
         <div className='table_title'>유입 링크 통계</div>
         <div>
-            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
-            {' ~ '}
-            <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
-            <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
-                검색하기
-            </button>
+          <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('startdate')} />
+          {' ~ '}
+          <input className='Payment_filter_date' type='date' onChange={this.handleInputValue('enddate')} />
+          <button className='payment_filter_search_btn' onClick={this.onClickgetClick} type='submit'>
+            검색하기
+          </button>
         </div>
         {this.state.showdata ? (
           <table>

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import './Review.css';
 import axios from 'axios';
 import Slider from 'react-slick';
@@ -16,7 +16,7 @@ class Review extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://15.165.44.114:5000/getOneUser', {
+      .post('http://localhost:5000/getOneUser', {
         id: this.props.data.UserId,
       })
       .then((res) => {
