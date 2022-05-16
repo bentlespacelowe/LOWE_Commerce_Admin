@@ -16,7 +16,7 @@ class Linkpage extends Component {
   }
 
   componentDidMount = () => {
-    axios.post('http://localhost:5000/getClick', {}).then((res) => {
+    axios.post('http://15.165.44.114:5000/getClick', {}).then((res) => {
       if (res.data) {
         let obj = this.state.obj;
         for (let i = 0; i < res.data.length; i++) {
@@ -63,7 +63,7 @@ class Linkpage extends Component {
   };
   onClickgetClick = () => {
     axios
-      .post('http://localhost:5000/getClick', {
+      .post('http://15.165.44.114:5000/getClick', {
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
       })

@@ -18,7 +18,7 @@ class Designertotal extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://localhost:5000/getClick', {
+      .post('http://15.165.44.114:5000/getClick', {
         type: 4,
       })
       .then((res) => {
@@ -39,7 +39,7 @@ class Designertotal extends Component {
       })
       .then(() => {
         axios
-          .post('http://localhost:5000/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 6,
           })
           .then((res) => {
@@ -56,7 +56,7 @@ class Designertotal extends Component {
           });
       })
       .then(() => {
-        axios.post('http://localhost:5000/getDesignerList', {}).then((res) => {
+        axios.post('http://15.165.44.114:5000/getDesignerList', {}).then((res) => {
           if (res.data) {
             console.log(res.data);
             let obj = this.state.obj;
@@ -71,7 +71,7 @@ class Designertotal extends Component {
         });
       })
       .then(() => {
-        axios.post('http://localhost:5000/getPayment', {}).then((res) => {
+        axios.post('http://15.165.44.114:5000/getPayment', {}).then((res) => {
           if (res.data) {
             let obj = this.state.obj;
             for (let i = 0; i < res.data.length; i++) {
@@ -89,7 +89,7 @@ class Designertotal extends Component {
       })
       .then(() => {
         axios
-          .post('http://localhost:5000/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 5,
           })
           .then((res) => {
@@ -114,7 +114,7 @@ class Designertotal extends Component {
 
   onClickgetClick = () => {
     axios
-      .post('http://localhost:5000/getClick', {
+      .post('http://15.165.44.114:5000/getClick', {
         type: 4,
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
@@ -137,7 +137,7 @@ class Designertotal extends Component {
       })
       .then(() => {
         axios
-          .post('http://localhost:5000/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 6,
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',
@@ -156,7 +156,7 @@ class Designertotal extends Component {
           });
       })
       .then(() => {
-        axios.post('http://localhost:5000/getDesignerList', {}).then((res) => {
+        axios.post('http://15.165.44.114:5000/getDesignerList', {}).then((res) => {
           if (res.data) {
             console.log(res.data);
             let obj = this.state.obj;
@@ -172,7 +172,7 @@ class Designertotal extends Component {
       })
       .then(() => {
         axios
-          .post('http://localhost:5000/getPayment', {
+          .post('http://15.165.44.114:5000/getPayment', {
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',
           })
@@ -194,7 +194,7 @@ class Designertotal extends Component {
       })
       .then(() => {
         axios
-          .post('http://localhost:5000/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 5,
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',

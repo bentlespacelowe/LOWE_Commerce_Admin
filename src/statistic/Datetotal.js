@@ -18,7 +18,7 @@ class Datetodal extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://localhost:5000/getClick', {
+      .post('http://15.165.44.114:5000/getClick', {
         type: 2,
       })
       .then((res) => {
@@ -39,7 +39,7 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('http://localhost:5000/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 1,
           })
           .then((res) => {
@@ -56,7 +56,7 @@ class Datetodal extends Component {
           });
       })
       .then(() => {
-        axios.post('http://localhost:5000/getPayment', {}).then((res) => {
+        axios.post('http://15.165.44.114:5000/getPayment', {}).then((res) => {
           if (res.data) {
             let obj = this.state.obj;
             for (let i = 0; i < res.data.length; i++) {
@@ -76,7 +76,7 @@ class Datetodal extends Component {
 
   onClickgetClick = () => {
     axios
-      .post('http://localhost:5000/getClick', {
+      .post('http://15.165.44.114:5000/getClick', {
         type: 2,
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
@@ -99,7 +99,7 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('http://localhost:5000/getClick', {
+          .post('http://15.165.44.114:5000/getClick', {
             type: 1,
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',
@@ -119,7 +119,7 @@ class Datetodal extends Component {
       })
       .then(() => {
         axios
-          .post('http://localhost:5000/getPayment', {
+          .post('http://15.165.44.114:5000/getPayment', {
             startDate: this.state.startdate + ' 00:00:00',
             endDate: this.state.enddate + ' 23:59:59',
           })

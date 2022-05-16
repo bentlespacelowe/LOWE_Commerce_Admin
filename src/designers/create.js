@@ -240,7 +240,7 @@ class create extends Component {
     const formData = new FormData();
     formData.append('file', img);
     await axios
-      .post('http://localhost:5000/addImg', formData, {
+      .post('http://15.165.44.114:5000/addImg', formData, {
         headers: {
           'content-type': 'multipart/form-data',
         },
@@ -288,7 +288,7 @@ class create extends Component {
       const formData = new FormData();
       formData.append('file', img);
       await axios
-        .post('http://localhost:5000/addImg', formData, {
+        .post('http://15.165.44.114:5000/addImg', formData, {
           headers: {
             'content-type': 'multipart/form-data',
           },
@@ -319,7 +319,7 @@ class create extends Component {
     }
 
     await axios
-      .patch('http://localhost:5000/manager', {
+      .patch('http://15.165.44.114:5000/manager', {
         id: this.props.location.state.e.id,
         normal_id: this.state.name,
         password: '1234',
@@ -367,7 +367,7 @@ class create extends Component {
       coupon = '';
     }
     await axios
-      .post('http://localhost:5000/joinManager', {
+      .post('http://15.165.44.114:5000/joinManager', {
         normal_id: this.state.name,
         password: '1234',
         name: this.state.name,
@@ -756,7 +756,7 @@ class create extends Component {
                   ) : null}
                   <div className='add_hashtag'>
                     <input type='text' onChange={this.handleInputValue('hash')} placeholder='ex) 컷트' className='hash' />
-                    <button onClick={this.addPortfolioHashtag}>해시태그 추가</button>
+                    <button onClick={this.addPortfolioHashtag()}>해시태그 추가</button>
                   </div>
                   <div className='add_portfolio_board'>
                     <input type='text' onChange={this.handleInputValue('board')} placeholder='보드번호' className='portfolio_board' />

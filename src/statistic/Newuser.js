@@ -19,7 +19,7 @@ class Newuser extends Component {
 
   componentDidMount = () => {
     axios
-      .post('http://localhost:5000/getClick', {})
+      .post('http://15.165.44.114:5000/getClick', {})
       .then((res) => {
         if (res.data) {
           let obj = this.state.obj;
@@ -55,7 +55,7 @@ class Newuser extends Component {
         }
       })
       .then(() => {
-        axios.post('http://localhost:5000/getAllUser', {}).then((res) => {
+        axios.post('http://15.165.44.114:5000/getAllUser', {}).then((res) => {
           console.log(res.data);
           if (res.data) {
             let obj = this.state.obj;

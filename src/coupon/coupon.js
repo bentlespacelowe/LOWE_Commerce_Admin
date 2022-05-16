@@ -21,7 +21,7 @@ class coupon extends Component {
   }
 
   componentDidMount = () => {
-    axios.post('http://localhost:5000/getAllCoupon', {}).then((res) => {
+    axios.post('http://15.165.44.114:5000/getAllCoupon', {}).then((res) => {
       let data = res.data;
       let exp = [];
       let all = [];
@@ -58,7 +58,7 @@ class coupon extends Component {
   };
   onClickUse = (e) => () => {
     axios
-      .post('http://localhost:5000/updateCoupon', {
+      .post('http://15.165.44.114:5000/updateCoupon', {
         id: e.id,
         text: this.state.text,
       })
@@ -70,7 +70,7 @@ class coupon extends Component {
   onClickDelete = (e) => () => {
     console.log(e.id);
     axios
-      .post('http://localhost:5000/removeCoupon', {
+      .post('http://15.165.44.114:5000/removeCoupon', {
         id: e.id,
       })
       .then((res) => {
@@ -83,7 +83,7 @@ class coupon extends Component {
 
   onClickkakao = () => {
     axios
-      .post('http://localhost:5000/alert', {
+      .post('http://15.165.44.114:5000/alert', {
         type: 1,
       })
       .then((res) => {

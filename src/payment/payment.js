@@ -95,7 +95,7 @@ class Payment extends Component {
     });
 
     axios
-      .post('http://localhost:5000/alert', {
+      .post('http://15.165.44.114:5000/alert', {
         type: 4,
       })
       .then((res) => {})
@@ -103,7 +103,7 @@ class Payment extends Component {
         console.log(err);
       });
 
-    axios.post('http://localhost:5000/getPayment', {}).then((res) => {
+    axios.post('http://15.165.44.114:5000/getPayment', {}).then((res) => {
       let date = [];
       let pay = [];
       let done = [];
@@ -189,7 +189,7 @@ class Payment extends Component {
       data: [],
     });
     axios
-      .post('http://localhost:5000/getPayment', {
+      .post('http://15.165.44.114:5000/getPayment', {
         startDate: this.state.startdate + ' 00:00:00',
         endDate: this.state.enddate + ' 23:59:59',
       })

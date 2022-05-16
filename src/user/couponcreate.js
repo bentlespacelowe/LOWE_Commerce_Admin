@@ -18,7 +18,7 @@ class couponcreate extends Component {
   handleImgValue = async () => {
     let id = window.location.pathname.split('/')[3];
     await axios
-      .post('http://localhost:5000/createCoupon', {
+      .post('http://15.165.44.114:5000/createCoupon', {
         UserId: id,
         price: this.state.price,
         content: this.state.content,

@@ -19,7 +19,7 @@ class modalPay extends React.Component {
 
   handleReservation = () => {
     axios
-      .post('http://localhost:5000/updatePayment', {
+      .post('http://15.165.44.114:5000/updatePayment', {
         id: Number(this.props.mypayment.id), //결제 DB 상의 id 값
         state: '시술', //원하시는 형태로 결제 상태 입력해주세요!
       })
@@ -50,12 +50,12 @@ class modalPay extends React.Component {
       }
       console.log(price);
       axios
-        .post('http://localhost:5000/payAuth', {
+        .post('http://15.165.44.114:5000/payAuth', {
           PCD_PAYCANCEL_FLAG: 'Y',
         })
         .then((authResult) => {
           axios
-            .post('http://localhost:5000/refund', {
+            .post('http://15.165.44.114:5000/refund', {
               ...authResult.data,
               payment_id: this.props.data.id, //Payment 아이디!
               PCD_REFUND_TOTAL: price, //결제취소 요청금액 (기존 결제금액보다 적은 금액 입력 시 부분취소로 진행)
@@ -64,7 +64,7 @@ class modalPay extends React.Component {
             .then((refundResult) => {
               if (refundResult.data.PCD_PAY_MSG === '승인취소성공') {
                 axios
-                  .post('http://localhost:5000/alert', {
+                  .post('http://15.165.44.114:5000/alert', {
                     type: 5,
                     PaymentId: this.props.data.id,
                   })
@@ -87,7 +87,7 @@ class modalPay extends React.Component {
 
   onClickkakao = () => {
     axios
-      .post('http://localhost:5000/alert', {
+      .post('http://15.165.44.114:5000/alert', {
         type: 3,
         PaymentId: this.props.data.id,
       })
@@ -106,7 +106,7 @@ class modalPay extends React.Component {
     console.log(surgery_date);
     if (date && time) {
       axios
-        .post('http://localhost:5000/updatePayment', {
+        .post('http://15.165.44.114:5000/updatePayment', {
           id: Number(this.props.data.id), //결제 DB 상의 id 값
           state: '예약확정', //원하시는 형태로 결제 상태 입력해주세요!
           surgery_date: surgery_date,
@@ -128,7 +128,7 @@ class modalPay extends React.Component {
 
   onClickUse = (e) => () => {
     axios
-      .post('http://localhost:5000/updateCoupon', {
+      .post('http://15.165.44.114:5000/updateCoupon', {
         id: e.id,
       })
       .then((res) => {
